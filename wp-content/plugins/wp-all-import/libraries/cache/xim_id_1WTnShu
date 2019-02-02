@@ -1,0 +1,5 @@
+<?php $x0 = $this->xml;
+$v1_0 = $x0->xpath("column[4]");
+$v1_1 = $x0->xpath("column[5]");
+$v1_2 = $x0->xpath("column[6]");
+?>external dimention: <?php echo $this->getValue($v1_0);?>x<?php echo $this->getValue($v1_1);?>x<?php echo $this->getValue($v1_2);
