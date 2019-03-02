@@ -1,0 +1,6 @@
+0000.002 (0) Opened log file at time: Tue, 12 Feb 2019 03:53:03 +0000 on https://www.rollingcrates.com
+0000.154 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.16.5 WP: 5.0.3 PHP: 7.3.1 (fpm-fcgi, Linux testmsvirtualmachine 3.10.0-862.11.6.el7.x86_64 #1 SMP Tue Aug 14 21:49:04 UTC 2018 x86_64) MySQL: 5.7.24-log WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 384M (used: 7M | 4M) multisite: N openssl: OpenSSL 1.0.2q  20 Nov 2018 mcrypt: N LANG:  ZipArchive::addFile: Y
+0000.162 (0) Free space on disk containing Updraft's temporary directory: 23190.2 MB
+0000.208 (0) Tasks: Backup files:  (schedule: manual) Backup DB: 1 (schedule: twicedaily)
+0000.220 (0) Processed schedules. Tasks now: Backup files:  Backup DB: 1
+0020.651 (0) Requesting semaphore lock (d) (apparently via scheduler: last_scheduled_action_called_at=1549900821, seconds_ago=42766)
