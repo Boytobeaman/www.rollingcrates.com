@@ -1,0 +1,495 @@
+0000.000 (0) Opened log file at time: Mon, 11 Feb 2019 03:17:21 +0000 on https://www.cnplasd.com
+0000.002 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.16.5 WP: 5.0.3 PHP: 7.2.14 (fpm-fcgi, Linux ip-172-31-35-13.ap-northeast-1.compute.internal 3.10.0-957.el7.x86_64 #1 SMP Thu Oct 4 20:48:51 UTC 2018 x86_64) MySQL: 5.7.25-log WPLANG: en_US Server: Apache safe_mode: 0 max_execution_time: 900 memory_limit: 256M (used: 9.4M | 2M) multisite: N openssl: OpenSSL 1.0.2q  20 Nov 2018 mcrypt: N LANG:  ZipArchive::addFile: Y
+0000.004 (0) Free space on disk containing Updraft's temporary directory: 1450.6 MB
+0000.006 (0) Tasks: Backup files: 1 (schedule: manual) Backup DB: 1 (schedule: twicedaily)
+0000.009 (0) Requesting semaphore lock (fd) (apparently not via scheduler)
+0000.015 (0) Set semaphore last lock (fd) time to 2019-02-11 03:17:21
+0000.017 (0) Semaphore lock (fd) complete
+0000.022 (0) Backup run: resumption=0, nonce=416de92a7764, file_nonce=416de92a7764 begun at=1549855041 (0s ago), job type=backup
+0000.025 (0) Scheduling a resumption (1) after 300 seconds (1549855341) in case this run gets aborted
+0000.029 (0) Checking if we have a zip executable available
+0000.032 (0) Creation of backups of directories: beginning
+0000.037 (0) Beginning creation of dump of plugins (split every: 400 MB)
+0000.108 (0) Total entities for the zip file: 880 directories, 5915 files (0 skipped as non-modified), 86.7 MB
+0000.118 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 100 files added (on-disk size: 0 KB)
+0000.122 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 200 files added (on-disk size: 0 KB)
+0000.125 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 300 files added (on-disk size: 0 KB)
+0000.129 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 400 files added (on-disk size: 0 KB)
+0000.133 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 500 files added (on-disk size: 0 KB)
+0000.135 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (15.6 MB, 5915 files batched, 501 (501) added so far); re-opening (prior size: 0 KB)
+0002.097 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 600 files added (on-disk size: 4717.1 KB)
+0002.101 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 700 files added (on-disk size: 4717.1 KB)
+0002.105 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 800 files added (on-disk size: 4717.1 KB)
+0002.109 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 900 files added (on-disk size: 4717.1 KB)
+0002.112 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1000 files added (on-disk size: 4717.1 KB)
+0002.114 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (10.8 MB, 5915 files batched, 501 (1002) added so far); re-opening (prior size: 4717.1 KB)
+0002.934 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1100 files added (on-disk size: 7211.4 KB)
+0002.938 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1200 files added (on-disk size: 7211.4 KB)
+0002.942 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1300 files added (on-disk size: 7211.4 KB)
+0002.946 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1400 files added (on-disk size: 7211.4 KB)
+0002.950 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1500 files added (on-disk size: 7211.4 KB)
+0002.951 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (5.2 MB, 5915 files batched, 501 (1503) added so far); re-opening (prior size: 7211.4 KB)
+0003.500 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1600 files added (on-disk size: 8591.4 KB)
+0003.504 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1700 files added (on-disk size: 8591.4 KB)
+0003.508 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1800 files added (on-disk size: 8591.4 KB)
+0003.512 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 1900 files added (on-disk size: 8591.4 KB)
+0003.528 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2000 files added (on-disk size: 8591.4 KB)
+0003.534 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (1.7 MB, 5915 files batched, 501 (2004) added so far); re-opening (prior size: 8591.4 KB)
+0003.923 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2100 files added (on-disk size: 9219.1 KB)
+0003.927 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2200 files added (on-disk size: 9219.1 KB)
+0003.931 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2300 files added (on-disk size: 9219.1 KB)
+0003.935 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2400 files added (on-disk size: 9219.1 KB)
+0003.939 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2500 files added (on-disk size: 9219.1 KB)
+0003.941 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (10.8 MB, 5915 files batched, 501 (2505) added so far); re-opening (prior size: 9219.1 KB)
+0005.791 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2600 files added (on-disk size: 12358.7 KB)
+0005.795 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2700 files added (on-disk size: 12358.7 KB)
+0005.799 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2800 files added (on-disk size: 12358.7 KB)
+0005.803 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 2900 files added (on-disk size: 12358.7 KB)
+0005.807 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3000 files added (on-disk size: 12358.7 KB)
+0005.809 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (7.1 MB, 5915 files batched, 501 (3006) added so far); re-opening (prior size: 12358.7 KB)
+0006.731 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3100 files added (on-disk size: 14121.9 KB)
+0006.735 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3200 files added (on-disk size: 14121.9 KB)
+0006.740 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3300 files added (on-disk size: 14121.9 KB)
+0006.743 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3400 files added (on-disk size: 14121.9 KB)
+0006.748 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3500 files added (on-disk size: 14121.9 KB)
+0006.749 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (4.3 MB, 5915 files batched, 501 (3507) added so far); re-opening (prior size: 14121.9 KB)
+0007.350 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3600 files added (on-disk size: 16507 KB)
+0007.354 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3700 files added (on-disk size: 16507 KB)
+0007.359 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3800 files added (on-disk size: 16507 KB)
+0007.363 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 3900 files added (on-disk size: 16507 KB)
+0007.367 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4000 files added (on-disk size: 16507 KB)
+0007.369 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (5 MB, 5915 files batched, 501 (4008) added so far); re-opening (prior size: 16507 KB)
+0008.066 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4100 files added (on-disk size: 17951.4 KB)
+0008.071 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4200 files added (on-disk size: 17951.4 KB)
+0008.075 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4300 files added (on-disk size: 17951.4 KB)
+0008.079 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4400 files added (on-disk size: 17951.4 KB)
+0008.083 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4500 files added (on-disk size: 17951.4 KB)
+0008.085 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (2.6 MB, 5915 files batched, 501 (4509) added so far); re-opening (prior size: 17951.4 KB)
+0008.438 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4600 files added (on-disk size: 18821 KB)
+0008.442 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4700 files added (on-disk size: 18821 KB)
+0008.446 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4800 files added (on-disk size: 18821 KB)
+0008.450 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 4900 files added (on-disk size: 18821 KB)
+0008.455 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5000 files added (on-disk size: 18821 KB)
+0008.457 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (18.7 MB, 5915 files batched, 501 (5010) added so far); re-opening (prior size: 18821 KB)
+0010.323 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5100 files added (on-disk size: 24159.9 KB)
+0010.328 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5200 files added (on-disk size: 24159.9 KB)
+0010.332 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5300 files added (on-disk size: 24159.9 KB)
+0010.337 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5400 files added (on-disk size: 24159.9 KB)
+0010.341 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5500 files added (on-disk size: 24159.9 KB)
+0010.343 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (1.8 MB, 5915 files batched, 501 (5511) added so far); re-opening (prior size: 24159.9 KB)
+0010.854 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5600 files added (on-disk size: 24860.3 KB)
+0010.859 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5700 files added (on-disk size: 24860.3 KB)
+0010.864 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5800 files added (on-disk size: 24860.3 KB)
+0010.868 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip.tmp: 5900 files added (on-disk size: 24860.3 KB)
+0011.755 (0) Created plugins zip (0) - 25831.8 KB in 11.7 s (2204.8 KB/s) (sha1: 73f0ab23c8825db15d049a7fdca6e1d9656d25e7, sha256: 07073266b8e2b9919aa396626bb353606dbd5caf239c2d73c5686bce37c83696)
+0011.759 (0) Beginning creation of dump of themes (split every: 400 MB)
+0011.774 (0) Total entities for the zip file: 190 directories, 901 files (0 skipped as non-modified), 17.7 MB
+0011.779 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 100 files added (on-disk size: 0 KB)
+0011.783 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 200 files added (on-disk size: 0 KB)
+0011.787 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 300 files added (on-disk size: 0 KB)
+0011.791 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 400 files added (on-disk size: 0 KB)
+0011.794 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 500 files added (on-disk size: 0 KB)
+0011.796 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (11.2 MB, 901 files batched, 501 (501) added so far); re-opening (prior size: 0 KB)
+0012.651 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 600 files added (on-disk size: 6702.7 KB)
+0012.655 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 700 files added (on-disk size: 6702.7 KB)
+0012.659 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 800 files added (on-disk size: 6702.7 KB)
+0012.663 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip.tmp: 900 files added (on-disk size: 6702.7 KB)
+0013.409 (0) Created themes zip (0) - 8097.7 KB in 1.6 s (4913.6 KB/s) (sha1: 4853a0977e08915116f0347bb6caf84596e8b898, sha256: 31a52ab85f4ccfb1dfba8b6267cfedf07019b63ab3e0e5d141e260d86a1f9d5d)
+0013.413 (0) Exclusion option setting (uploads): backup*,*backups,backwpup*,wp-clone,snapshots
+0013.414 (0) Looking for candidates to backup in: /data/wwwroot/www.cnplasd.com/wp-content/uploads
+0013.416 (0) finding files: 2019: adding to list (1)
+0013.417 (0) finding files: wc-logs: adding to list (2)
+0013.419 (0) finding files: woocommerce_uploads: adding to list (3)
+0013.420 (0) finding files: wpallimport: adding to list (4)
+0013.422 (0) finding files: GeoLite2-Country.mmdb: adding to list (5)
+0013.423 (0) Beginning creation of dump of uploads (split every: 400 MB)
+0013.441 (0) Total entities for the zip file: 25 directories, 1401 files (0 skipped as non-modified), 141.2 MB
+0013.445 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 100 files added (on-disk size: 0 KB)
+0013.448 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 200 files added (on-disk size: 0 KB)
+0013.452 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 300 files added (on-disk size: 0 KB)
+0013.455 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 400 files added (on-disk size: 0 KB)
+0013.459 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 500 files added (on-disk size: 0 KB)
+0013.461 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (22.1 MB, 1401 files batched, 501 (501) added so far); re-opening (prior size: 0 KB)
+0014.049 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 600 files added (on-disk size: 22674.8 KB)
+0014.053 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 700 files added (on-disk size: 22674.8 KB)
+0014.055 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (26.7 MB, 1401 files batched, 219 (720) added so far); re-opening (prior size: 22674.8 KB)
+0014.448 (0) A useful amount of data was added after this amount of zip processing: 0.8 s (normalised: 0.7 s, rate: 35885.4 KB/s)
+0014.451 (0) Performance is good - will increase the amount of data we attempt to batch (time=0.7609601020813, normalised_time=0.71338245802858, max_time=-1, data points known=0, old_max_bytes=26214400, new_max_bytes=209715200)
+0014.459 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 800 files added (on-disk size: 50021.3 KB)
+0014.463 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 900 files added (on-disk size: 50021.3 KB)
+0014.467 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 1000 files added (on-disk size: 50021.3 KB)
+0014.470 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 1100 files added (on-disk size: 50021.3 KB)
+0014.474 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 1200 files added (on-disk size: 50021.3 KB)
+0014.476 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 500 files added on this batch (41.8 MB, 1401 files batched, 501 (1221) added so far); re-opening (prior size: 50021.3 KB)
+0015.794 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 1300 files added (on-disk size: 92880.5 KB)
+0015.810 (0) Zip: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip.tmp: 1400 files added (on-disk size: 92880.5 KB)
+0022.246 (0) Created uploads zip (0) - 141802.5 KB in 8.8 s (16075.9 KB/s) (sha1: c7d722e964d20b36a18362184930483111869d4f, sha256: af05a0d98e3bbe6304cf53799288b907968c4f1d7612f73c416dfc5913e53664)
+0022.250 (0) Beginning backup of other directories found in the content directory (index: 0)
+0022.251 (0) Exclusion option setting (others): upgrade,cache,updraft,backup*,*backups,mysql.sql,debug.log
+0022.253 (0) Looking for candidates to backup in: /data/wwwroot/www.cnplasd.com/wp-content
+0022.255 (0) finding files: index.php: adding to list (1)
+0022.256 (0) finding files: plugins: skipping: this is the plugins directory
+0022.258 (0) finding files: themes: skipping: this is the themes directory
+0022.259 (0) finding files: uploads: skipping: this is the uploads directory
+0022.261 (0) finding files: advanced-cache.php: adding to list (2)
+0022.272 (0) finding files: cache: skipping: excluded by options
+0022.276 (0) finding files: w3tc-config: adding to list (3)
+0022.282 (0) finding files: upgrade: skipping: excluded by options
+0022.289 (0) finding files: updraft: skipping: this is the updraft directory
+0022.295 (0) Total entities for the zip file: 1 directories, 3 files (0 skipped as non-modified), 0 MB
+0022.304 (0) Created others zip (0) - 1 KB in 0 s (87.7 KB/s) (sha1: c1f0f73c0be4b40efea7af86f708df786b6887e0, sha256: f9fb805e1b134733e0101f014ba54d1e7ed281df795999ce9312e043e9d6ec59)
+0022.311 (0) Saving backup status to database (elements: 8)
+0022.316 (0) Beginning creation of database dump (WordPress DB)
+0022.351 (0) Table wp_options: Total expected rows (approximate): 536
+0022.379 (0) Table wp_options: Total rows added: 532 in 0.03 seconds
+0022.381 (0) Table wp_options: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_options.table.gz - 121.2 KB)
+0022.387 (0) Table wp_users: Total expected rows (approximate): 1
+0022.389 (0) Table wp_users: Total rows added: 1 in 0.00 seconds
+0022.391 (0) Table wp_users: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_users.table.gz - 0.6 KB)
+0022.396 (0) Table wp_usermeta: Total expected rows (approximate): 60
+0022.399 (0) Table wp_usermeta: Total rows added: 59 in 0.00 seconds
+0022.401 (0) Table wp_usermeta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_usermeta.table.gz - 2.8 KB)
+0022.406 (0) Table wp_commentmeta: Total expected rows (approximate): 0
+0022.408 (0) Table wp_commentmeta: Total rows added: 0 in 0.00 seconds
+0022.410 (0) Table wp_commentmeta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_commentmeta.table.gz - 0.4 KB)
+0022.415 (0) Table wp_comments: Total expected rows (approximate): 0
+0022.418 (0) Table wp_comments: Total rows added: 0 in 0.00 seconds
+0022.419 (0) Table wp_comments: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_comments.table.gz - 0.5 KB)
+0022.424 (0) Table wp_links: Total expected rows (approximate): 0
+0022.427 (0) Table wp_links: Total rows added: 0 in 0.00 seconds
+0022.428 (0) Table wp_links: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_links.table.gz - 0.4 KB)
+0022.434 (0) Table wp_postmeta: Total expected rows (approximate): 2002
+0022.452 (0) Table wp_postmeta: Total rows added: 1943 in 0.02 seconds
+0022.455 (0) Table wp_postmeta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_postmeta.table.gz - 30.8 KB)
+0022.460 (0) Table wp_posts: Total expected rows (approximate): 358
+0022.472 (0) Table wp_posts: Total rows added: 358 in 0.01 seconds
+0022.474 (0) Table wp_posts: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_posts.table.gz - 28 KB)
+0022.480 (0) Table wp_term_relationships: Total expected rows (approximate): 173
+0022.482 (0) Table wp_term_relationships: Total rows added: 173 in 0.00 seconds
+0022.484 (0) Table wp_term_relationships: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_term_relationships.table.gz - 0.8 KB)
+0022.489 (0) Table wp_term_taxonomy: Total expected rows (approximate): 38
+0022.492 (0) Table wp_term_taxonomy: Total rows added: 38 in 0.00 seconds
+0022.494 (0) Table wp_term_taxonomy: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_term_taxonomy.table.gz - 1 KB)
+0022.499 (0) Table wp_termmeta: Total expected rows (approximate): 31
+0022.502 (0) Table wp_termmeta: Total rows added: 31 in 0.00 seconds
+0022.503 (0) Table wp_termmeta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_termmeta.table.gz - 0.6 KB)
+0022.509 (0) Table wp_terms: Total expected rows (approximate): 38
+0022.511 (0) Table wp_terms: Total rows added: 38 in 0.00 seconds
+0022.513 (0) Table wp_terms: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_terms.table.gz - 0.9 KB)
+0022.519 (0) Table wp_woocommerce_order_itemmeta: Total expected rows (approximate): 0
+0022.521 (0) Table wp_woocommerce_order_itemmeta: Total rows added: 0 in 0.00 seconds
+0022.523 (0) Table wp_woocommerce_order_itemmeta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_order_itemmeta.table.gz - 0.4 KB)
+0022.528 (0) Table wp_woocommerce_payment_tokenmeta: Total expected rows (approximate): 0
+0022.530 (0) Table wp_woocommerce_payment_tokenmeta: Total rows added: 0 in 0.00 seconds
+0022.532 (0) Table wp_woocommerce_payment_tokenmeta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_payment_tokenmeta.table.gz - 0.4 KB)
+0022.538 (0) Table wp_yoast_seo_links: Total expected rows (approximate): 25
+0022.540 (0) Table wp_yoast_seo_links: Total rows added: 26 in 0.00 seconds
+0022.542 (0) Table wp_yoast_seo_links: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_yoast_seo_links.table.gz - 0.8 KB)
+0022.547 (0) Table wp_yoast_seo_meta: Total expected rows (approximate): 432
+0022.550 (0) Table wp_yoast_seo_meta: Total rows added: 522 in 0.00 seconds
+0022.552 (0) Table wp_yoast_seo_meta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_yoast_seo_meta.table.gz - 1.6 KB)
+0022.558 (0) Table wp_UPCP_Catalogue_Items: Total expected rows (approximate): 0
+0022.560 (0) Table wp_UPCP_Catalogue_Items: Total rows added: 0 in 0.00 seconds
+0022.561 (0) Table wp_UPCP_Catalogue_Items: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Catalogue_Items.table.gz - 0.3 KB)
+0022.567 (0) Table wp_UPCP_Catalogues: Total expected rows (approximate): 0
+0022.569 (0) Table wp_UPCP_Catalogues: Total rows added: 1 in 0.00 seconds
+0022.571 (0) Table wp_UPCP_Catalogues: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Catalogues.table.gz - 0.4 KB)
+0022.576 (0) Table wp_UPCP_Categories: Total expected rows (approximate): 0
+0022.578 (0) Table wp_UPCP_Categories: Total rows added: 1 in 0.00 seconds
+0022.580 (0) Table wp_UPCP_Categories: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Categories.table.gz - 0.4 KB)
+0022.585 (0) Table wp_UPCP_Custom_Fields: Total expected rows (approximate): 0
+0022.588 (0) Table wp_UPCP_Custom_Fields: Total rows added: 0 in 0.00 seconds
+0022.589 (0) Table wp_UPCP_Custom_Fields: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Custom_Fields.table.gz - 0.4 KB)
+0022.595 (0) Table wp_UPCP_Fields_Meta: Total expected rows (approximate): 0
+0022.597 (0) Table wp_UPCP_Fields_Meta: Total rows added: 0 in 0.00 seconds
+0022.598 (0) Table wp_UPCP_Fields_Meta: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Fields_Meta.table.gz - 0.3 KB)
+0022.604 (0) Table wp_UPCP_Item_Images: Total expected rows (approximate): 0
+0022.606 (0) Table wp_UPCP_Item_Images: Total rows added: 0 in 0.00 seconds
+0022.607 (0) Table wp_UPCP_Item_Images: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Item_Images.table.gz - 0.3 KB)
+0022.613 (0) Table wp_UPCP_Items: Total expected rows (approximate): 0
+0022.615 (0) Table wp_UPCP_Items: Total rows added: 1 in 0.00 seconds
+0022.617 (0) Table wp_UPCP_Items: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Items.table.gz - 0.6 KB)
+0022.623 (0) Table wp_UPCP_SubCategories: Total expected rows (approximate): 0
+0022.625 (0) Table wp_UPCP_SubCategories: Total rows added: 0 in 0.00 seconds
+0022.627 (0) Table wp_UPCP_SubCategories: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_SubCategories.table.gz - 0.4 KB)
+0022.632 (0) Table wp_UPCP_Tag_Groups: Total expected rows (approximate): 0
+0022.634 (0) Table wp_UPCP_Tag_Groups: Total rows added: 0 in 0.00 seconds
+0022.636 (0) Table wp_UPCP_Tag_Groups: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Tag_Groups.table.gz - 0.3 KB)
+0022.641 (0) Table wp_UPCP_Tagged_Items: Total expected rows (approximate): 0
+0022.643 (0) Table wp_UPCP_Tagged_Items: Total rows added: 0 in 0.00 seconds
+0022.645 (0) Table wp_UPCP_Tagged_Items: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Tagged_Items.table.gz - 0.3 KB)
+0022.651 (0) Table wp_UPCP_Tags: Total expected rows (approximate): 0
+0022.653 (0) Table wp_UPCP_Tags: Total rows added: 0 in 0.00 seconds
+0022.655 (0) Table wp_UPCP_Tags: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Tags.table.gz - 0.4 KB)
+0022.660 (0) Table wp_UPCP_Videos: Total expected rows (approximate): 0
+0022.662 (0) Table wp_UPCP_Videos: Total rows added: 0 in 0.00 seconds
+0022.664 (0) Table wp_UPCP_Videos: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Videos.table.gz - 0.3 KB)
+0022.669 (0) Table wp_pmxi_files: Total expected rows (approximate): 1
+0022.671 (0) Table wp_pmxi_files: Total rows added: 2 in 0.00 seconds
+0022.673 (0) Table wp_pmxi_files: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_files.table.gz - 0.5 KB)
+0022.678 (0) Table wp_pmxi_history: Total expected rows (approximate): 4
+0022.681 (0) Table wp_pmxi_history: Total rows added: 4 in 0.00 seconds
+0022.682 (0) Table wp_pmxi_history: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_history.table.gz - 0.5 KB)
+0022.688 (0) Table wp_pmxi_images: Total expected rows (approximate): 209
+0022.691 (0) Table wp_pmxi_images: Total rows added: 221 in 0.00 seconds
+0022.693 (0) Table wp_pmxi_images: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_images.table.gz - 7.2 KB)
+0022.698 (0) Table wp_pmxi_imports: Total expected rows (approximate): 2
+0022.701 (0) Table wp_pmxi_imports: Total rows added: 2 in 0.00 seconds
+0022.703 (0) Table wp_pmxi_imports: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_imports.table.gz - 4.6 KB)
+0022.708 (0) Table wp_pmxi_posts: Total expected rows (approximate): 39
+0022.711 (0) Table wp_pmxi_posts: Total rows added: 40 in 0.00 seconds
+0022.712 (0) Table wp_pmxi_posts: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_posts.table.gz - 1.1 KB)
+0022.718 (0) Table wp_pmxi_templates: Total expected rows (approximate): 3
+0022.721 (0) Table wp_pmxi_templates: Total rows added: 3 in 0.00 seconds
+0022.723 (0) Table wp_pmxi_templates: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_templates.table.gz - 4.4 KB)
+0022.729 (0) Table wp_wc_download_log: Total expected rows (approximate): 0
+0022.731 (0) Table wp_wc_download_log: Total rows added: 0 in 0.00 seconds
+0022.733 (0) Table wp_wc_download_log: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_wc_download_log.table.gz - 0.4 KB)
+0022.738 (0) Table wp_wc_webhooks: Total expected rows (approximate): 0
+0022.741 (0) Table wp_wc_webhooks: Total rows added: 0 in 0.00 seconds
+0022.742 (0) Table wp_wc_webhooks: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_wc_webhooks.table.gz - 0.5 KB)
+0022.748 (0) Table wp_woocommerce_api_keys: Total expected rows (approximate): 0
+0022.750 (0) Table wp_woocommerce_api_keys: Total rows added: 0 in 0.00 seconds
+0022.751 (0) Table wp_woocommerce_api_keys: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_api_keys.table.gz - 0.4 KB)
+0022.757 (0) Table wp_woocommerce_attribute_taxonomies: Total expected rows (approximate): 0
+0022.759 (0) Table wp_woocommerce_attribute_taxonomies: Total rows added: 0 in 0.00 seconds
+0022.760 (0) Table wp_woocommerce_attribute_taxonomies: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_attribute_taxonomies.table.gz - 0.4 KB)
+0022.766 (0) Table wp_woocommerce_downloadable_product_permissions: Total expected rows (approximate): 0
+0022.768 (0) Table wp_woocommerce_downloadable_product_permissions: Total rows added: 0 in 0.00 seconds
+0022.771 (0) Table wp_woocommerce_downloadable_product_permissions: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_downloadable_product_permissions.table.gz - 0.5 KB)
+0022.777 (0) Table wp_woocommerce_log: Total expected rows (approximate): 0
+0022.780 (0) Table wp_woocommerce_log: Total rows added: 0 in 0.00 seconds
+0022.782 (0) Table wp_woocommerce_log: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_log.table.gz - 0.4 KB)
+0022.810 (0) Table wp_woocommerce_order_items: Total expected rows (approximate): 0
+0022.812 (0) Table wp_woocommerce_order_items: Total rows added: 0 in 0.00 seconds
+0022.814 (0) Table wp_woocommerce_order_items: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_order_items.table.gz - 0.4 KB)
+0022.819 (0) Table wp_woocommerce_payment_tokens: Total expected rows (approximate): 0
+0022.821 (0) Table wp_woocommerce_payment_tokens: Total rows added: 0 in 0.00 seconds
+0022.823 (0) Table wp_woocommerce_payment_tokens: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_payment_tokens.table.gz - 0.4 KB)
+0022.829 (0) Table wp_woocommerce_sessions: Total expected rows (approximate): 8
+0022.832 (0) Table wp_woocommerce_sessions: Total rows added: 8 in 0.00 seconds
+0022.833 (0) Table wp_woocommerce_sessions: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_sessions.table.gz - 1.2 KB)
+0022.839 (0) Table wp_woocommerce_shipping_zone_locations: Total expected rows (approximate): 0
+0022.841 (0) Table wp_woocommerce_shipping_zone_locations: Total rows added: 0 in 0.00 seconds
+0022.842 (0) Table wp_woocommerce_shipping_zone_locations: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_shipping_zone_locations.table.gz - 0.4 KB)
+0022.848 (0) Table wp_woocommerce_shipping_zone_methods: Total expected rows (approximate): 0
+0022.850 (0) Table wp_woocommerce_shipping_zone_methods: Total rows added: 0 in 0.00 seconds
+0022.851 (0) Table wp_woocommerce_shipping_zone_methods: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_shipping_zone_methods.table.gz - 0.4 KB)
+0022.856 (0) Table wp_woocommerce_shipping_zones: Total expected rows (approximate): 0
+0022.859 (0) Table wp_woocommerce_shipping_zones: Total rows added: 0 in 0.00 seconds
+0022.860 (0) Table wp_woocommerce_shipping_zones: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_shipping_zones.table.gz - 0.3 KB)
+0022.866 (0) Table wp_woocommerce_tax_rate_locations: Total expected rows (approximate): 0
+0022.868 (0) Table wp_woocommerce_tax_rate_locations: Total rows added: 0 in 0.00 seconds
+0022.869 (0) Table wp_woocommerce_tax_rate_locations: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_tax_rate_locations.table.gz - 0.4 KB)
+0022.875 (0) Table wp_woocommerce_tax_rates: Total expected rows (approximate): 0
+0022.877 (0) Table wp_woocommerce_tax_rates: Total rows added: 0 in 0.00 seconds
+0022.878 (0) Table wp_woocommerce_tax_rates: finishing file (backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_tax_rates.table.gz - 0.4 KB)
+0022.883 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_options.table.gz (1/48): adding to final database dump
+0022.908 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_users.table.gz (2/48): adding to final database dump
+0022.910 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_usermeta.table.gz (3/48): adding to final database dump
+0022.912 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_commentmeta.table.gz (4/48): adding to final database dump
+0022.913 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_comments.table.gz (5/48): adding to final database dump
+0022.915 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_links.table.gz (6/48): adding to final database dump
+0022.916 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_postmeta.table.gz (7/48): adding to final database dump
+0022.928 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_posts.table.gz (8/48): adding to final database dump
+0022.935 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_term_relationships.table.gz (9/48): adding to final database dump
+0022.937 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_term_taxonomy.table.gz (10/48): adding to final database dump
+0022.939 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_termmeta.table.gz (11/48): adding to final database dump
+0022.941 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_terms.table.gz (12/48): adding to final database dump
+0022.942 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_order_itemmeta.table.gz (13/48): adding to final database dump
+0022.944 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_payment_tokenmeta.table.gz (14/48): adding to final database dump
+0022.945 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_yoast_seo_links.table.gz (15/48): adding to final database dump
+0022.947 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_yoast_seo_meta.table.gz (16/48): adding to final database dump
+0022.949 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Catalogue_Items.table.gz (17/48): adding to final database dump
+0022.951 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Catalogues.table.gz (18/48): adding to final database dump
+0022.953 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Categories.table.gz (19/48): adding to final database dump
+0022.954 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Custom_Fields.table.gz (20/48): adding to final database dump
+0022.956 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Fields_Meta.table.gz (21/48): adding to final database dump
+0022.957 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Item_Images.table.gz (22/48): adding to final database dump
+0022.959 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Items.table.gz (23/48): adding to final database dump
+0022.960 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_SubCategories.table.gz (24/48): adding to final database dump
+0022.962 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Tag_Groups.table.gz (25/48): adding to final database dump
+0022.964 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Tagged_Items.table.gz (26/48): adding to final database dump
+0022.965 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Tags.table.gz (27/48): adding to final database dump
+0022.967 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_UPCP_Videos.table.gz (28/48): adding to final database dump
+0022.969 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_files.table.gz (29/48): adding to final database dump
+0022.970 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_history.table.gz (30/48): adding to final database dump
+0022.972 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_images.table.gz (31/48): adding to final database dump
+0022.975 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_imports.table.gz (32/48): adding to final database dump
+0022.978 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_posts.table.gz (33/48): adding to final database dump
+0022.979 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_pmxi_templates.table.gz (34/48): adding to final database dump
+0022.982 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_wc_download_log.table.gz (35/48): adding to final database dump
+0022.983 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_wc_webhooks.table.gz (36/48): adding to final database dump
+0022.985 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_api_keys.table.gz (37/48): adding to final database dump
+0022.987 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_attribute_taxonomies.table.gz (38/48): adding to final database dump
+0022.988 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_downloadable_product_permissions.table.gz (39/48): adding to final database dump
+0022.990 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_log.table.gz (40/48): adding to final database dump
+0022.992 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_order_items.table.gz (41/48): adding to final database dump
+0022.993 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_payment_tokens.table.gz (42/48): adding to final database dump
+0022.995 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_sessions.table.gz (43/48): adding to final database dump
+0022.996 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_shipping_zone_locations.table.gz (44/48): adding to final database dump
+0022.998 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_shipping_zone_methods.table.gz (45/48): adding to final database dump
+0022.999 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_shipping_zones.table.gz (46/48): adding to final database dump
+0023.001 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_tax_rate_locations.table.gz (47/48): adding to final database dump
+0023.003 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db-table-wp_woocommerce_tax_rates.table.gz (48/48): adding to final database dump
+0023.004 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz: finished writing out complete database file (192 KB)
+0023.015 (0) Total database tables backed up: 48 (backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz, size: 210955, sha256)
+0023.023 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip: plugins: This file has not yet been successfully uploaded: will queue
+0023.025 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip: themes: This file has not yet been successfully uploaded: will queue
+0023.026 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip: uploads: This file has not yet been successfully uploaded: will queue
+0023.028 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-others.zip: others: This file has not yet been successfully uploaded: will queue
+0023.030 (0) backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz: db: This file has not yet been successfully uploaded: will queue
+0023.031 (0) Saving backup history. Total backup size: 171.8 MB
+0023.035 (0) Requesting upload of the files that have not yet been successfully uploaded (5)
+0023.040 (0) Cloud backup selection (1/1): s3 with instance (1/1) (last)
+0023.043 (0) Beginning dispatch of backup to remote (s3) (instance identifier s-912efb6371626c255ce6d13e5987cfdd)
+0023.772 (0) Set region: us-west-1
+0023.776 (0) S3 upload (us-west-1): backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip (chunks: 6) -> s3://website-database-lxc/cnplasd.com/backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip
+0024.328 (0) S3 chunked upload: got multipart ID: xhckL5B6hMy78bZazrbNyIr.7eelJU5uBX5Q2h5VgLiOcHsdjKCqM1C5k507P32ZxtBlm5So1YFHyKani91GSulyQCn7cX77caEW9PmR4ys185gLDy1kD0K8N5PVHcpE
+0025.691 (0) S3 chunked upload: 16.7 % uploaded (1, "fed9049ece56f4edd4ed0a7914ad8ac7")
+0026.703 (0) S3 chunked upload: 33.3 % uploaded (2, "b95a22c934c8772c482cbbb1c01c629c")
+0027.912 (0) S3 chunked upload: 50 % uploaded (3, "0ae1ca2d897fb7a4019ec1e988bf267a")
+0029.356 (0) S3 chunked upload: 66.7 % uploaded (4, "979cb5e241497239fbd41be1cd3242b9")
+0030.683 (0) S3 chunked upload: 83.3 % uploaded (5, "ab44d802c8cbf928bfa3e7a0bd478ba1")
+0030.861 (0) S3 chunked upload: 100 % uploaded (6, "c47fe2d68ef3dc7371324a2adc89f984")
+0030.866 (0) S3 upload: all chunks uploaded; will now instruct S3 to re-assemble
+0031.146 (0) S3 upload (plugins0): re-assembly succeeded
+0031.148 (0) Recording as successfully uploaded: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip
+0031.155 (0) Deleting local file: backup_2019-02-11-0317_Cnplasd_416de92a7764-plugins.zip: OK
+0031.156 (0) S3 upload (us-west-1): backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip (chunks: 2) -> s3://website-database-lxc/cnplasd.com/backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip
+0031.279 (0) S3 chunked upload: got multipart ID: dNZCuhjw1iaV0Q4fCw4OmvYs4TCHmPUmVxM_bzA1dqD5FY4l..a5mlHEIQJRuplom1axqZXyz5GMIWCGz_o99qQaP1JhBjabn5ZJzPm3VMEyjwDToJKJAwNwTHHp3LTH
+0033.022 (0) S3 chunked upload: 50 % uploaded (1, "0cd296891334257f0021df600ce1571e")
+0034.030 (0) S3 chunked upload: 100 % uploaded (2, "eb06a8946c941d5e40f03eed7853cb92")
+0034.035 (0) S3 upload: all chunks uploaded; will now instruct S3 to re-assemble
+0034.232 (0) S3 upload (themes0): re-assembly succeeded
+0034.235 (0) Recording as successfully uploaded: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip
+0034.239 (0) Deleting local file: backup_2019-02-11-0317_Cnplasd_416de92a7764-themes.zip: OK
+0034.241 (0) S3 upload (us-west-1): backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip (chunks: 28) -> s3://website-database-lxc/cnplasd.com/backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip
+0034.363 (0) S3 chunked upload: got multipart ID: I7UaL5zHetzWqTjt0iX23F2Foo6DpCdPh3OuA3ryLWPGQTC00UvuO_Au9sDpa7HjZAmGHWu_5.wlQy_1yvInQtT5i.afu2Ehn0bH_JS4mcka4DA8gGvE3HrWMmaBI.HI
+0035.898 (0) S3 chunked upload: 3.6 % uploaded (1, "ec6c7f90b724e0d79847472d8b50ff8c")
+0037.451 (0) S3 chunked upload: 7.1 % uploaded (2, "f6e7e05ed3978e533d936664776a212b")
+0038.975 (0) S3 chunked upload: 10.7 % uploaded (3, "0c69f48bfc3c237f28276c435f5c1663")
+0040.525 (0) S3 chunked upload: 14.3 % uploaded (4, "141e33ec93408e630be17c1b9e0c4291")
+0042.091 (0) S3 chunked upload: 17.9 % uploaded (5, "42ed7171c0a1e623d5dc9cce005b8c8d")
+0043.635 (0) S3 chunked upload: 21.4 % uploaded (6, "f57834cb37d3d158eb92d8a8e9bb0b14")
+0045.188 (0) S3 chunked upload: 25 % uploaded (7, "09c780ce1a8f4fdb7f056237f4c5f9de")
+0046.733 (0) S3 chunked upload: 28.6 % uploaded (8, "74547f4fe5ab5abdf5c0abb1be5a43c2")
+0048.179 (0) S3 chunked upload: 32.1 % uploaded (9, "0725033aac7cc36e003c075cc5f4843f")
+0049.627 (0) S3 chunked upload: 35.7 % uploaded (10, "180d2e787aabf77e5147c8c9a830b12c")
+0050.974 (0) S3 chunked upload: 39.3 % uploaded (11, "56ed5b10ea07ad689120cc30edcb10eb")
+0052.309 (0) S3 chunked upload: 42.9 % uploaded (12, "245c7b4c5625af924fdcf7b0b71ff87e")
+0053.546 (0) S3 chunked upload: 46.4 % uploaded (13, "35ebb90f52c0e873cafb69e464508988")
+0055.033 (0) S3 chunked upload: 50 % uploaded (14, "39d2c3bf7ddafc378e884a831d1dce1a")
+0056.475 (0) S3 chunked upload: 53.6 % uploaded (15, "7d8eef9d3744681a5529b85a05b5656e")
+0057.792 (0) S3 chunked upload: 57.1 % uploaded (16, "ec3afab2e4fa43ff6ec3cf4ea79a88d4")
+0059.121 (0) S3 chunked upload: 60.7 % uploaded (17, "198f3d2e3a873ad1d900da48c42ff686")
+0060.374 (0) S3 chunked upload: 64.3 % uploaded (18, "d2985b4bec14f46dd6c2d162c97e1dbf")
+0061.614 (0) S3 chunked upload: 67.9 % uploaded (19, "485e9ceaf0c4e9bdfe4259a3c21379ab")
+0062.818 (0) S3 chunked upload: 71.4 % uploaded (20, "98679db6cb3792476e9cd4cf6ff24789")
+0064.381 (0) S3 chunked upload: 75 % uploaded (21, "13e126e97889d93de335570ffaa9679b")
+0065.846 (0) S3 chunked upload: 78.6 % uploaded (22, "6b63f399b35e1b41354892efff04ddb1")
+0067.295 (0) S3 chunked upload: 82.1 % uploaded (23, "7b26c3d6b39b00a65b522bc58a6f09b6")
+0068.724 (0) S3 chunked upload: 85.7 % uploaded (24, "05277ba2f31d966c6029a0e17792486f")
+0070.139 (0) S3 chunked upload: 89.3 % uploaded (25, "77446b140bebd5e9c58bc1f89d7bdb1b")
+0071.526 (0) S3 chunked upload: 92.9 % uploaded (26, "df96129b38e3af2b595038bf6e8115f3")
+0072.957 (0) S3 chunked upload: 96.4 % uploaded (27, "fbca08c55618ab561504049081e01a38")
+0073.955 (0) S3 chunked upload: 100 % uploaded (28, "36da635ac20b2ca6f36ce4d03e35a20e")
+0073.961 (0) S3 upload: all chunks uploaded; will now instruct S3 to re-assemble
+0074.228 (0) S3 upload (uploads0): re-assembly succeeded
+0074.230 (0) Recording as successfully uploaded: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip
+0074.251 (0) Deleting local file: backup_2019-02-11-0317_Cnplasd_416de92a7764-uploads.zip: OK
+0074.253 (0) S3 upload (us-west-1): backup_2019-02-11-0317_Cnplasd_416de92a7764-others.zip (chunks: 1) -> s3://website-database-lxc/cnplasd.com/backup_2019-02-11-0317_Cnplasd_416de92a7764-others.zip
+0074.384 (0) S3 regular upload: success
+0074.386 (0) Recording as successfully uploaded: backup_2019-02-11-0317_Cnplasd_416de92a7764-others.zip
+0074.390 (0) Deleting local file: backup_2019-02-11-0317_Cnplasd_416de92a7764-others.zip: OK
+0074.392 (0) S3 upload (us-west-1): backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz (chunks: 1) -> s3://website-database-lxc/cnplasd.com/backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz
+0074.562 (0) S3 regular upload: success
+0074.564 (0) Recording as successfully uploaded: backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz
+0074.568 (0) Deleting local file: backup_2019-02-11-0317_Cnplasd_416de92a7764-db.gz: OK
+0074.571 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=10, retain_db=120
+0074.573 (0) These backup set(s) were imported from a remote location, so will not be counted or pruned. Skipping: 1549098540, 1549098420
+0074.575 (0) Number of backup sets in history: 20; groups (db): 1
+0074.576 (0) Examining (for databases) backup set with group_id=0, nonce=416de92a7764, datestamp=1549855041 (Feb 11 2019 03:17:21)
+0074.578 (0) This backup set is the backup set just made, so will not be deleted.
+0074.578 (0) Examining (for databases) backup set with group_id=0, nonce=4919331fc043, datestamp=1549834124 (Feb 10 2019 21:28:44)
+0074.578 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.579 (0) Examining (for databases) backup set with group_id=0, nonce=0203bfc9c9e2, datestamp=1549791618 (Feb 10 2019 09:40:18)
+0074.579 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.579 (0) Examining (for databases) backup set with group_id=0, nonce=e621f7573409, datestamp=1549747492 (Feb 09 2019 21:24:52)
+0074.579 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.579 (0) Examining (for databases) backup set with group_id=0, nonce=f1b29dd5319b, datestamp=1549706411 (Feb 09 2019 10:00:11)
+0074.579 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.579 (0) Examining (for databases) backup set with group_id=0, nonce=d1243a2ed7fc, datestamp=1549670315 (Feb 08 2019 23:58:35)
+0074.579 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.579 (0) Examining (for databases) backup set with group_id=0, nonce=0dc440f9a14a, datestamp=1549620014 (Feb 08 2019 10:00:14)
+0074.579 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.579 (0) Examining (for databases) backup set with group_id=0, nonce=1df5df60ba92, datestamp=1549581236 (Feb 07 2019 23:13:56)
+0074.579 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=400697ee1c55, datestamp=1549532006 (Feb 07 2019 09:33:26)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=f3598de2ce01, datestamp=1549487951 (Feb 06 2019 21:19:11)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=6439ba713485, datestamp=1549445099 (Feb 06 2019 09:24:59)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=267422be82bd, datestamp=1549401966 (Feb 05 2019 21:26:06)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=5f20a0e3e0b9, datestamp=1549359593 (Feb 05 2019 09:39:53)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=48b8106890da, datestamp=1549317088 (Feb 04 2019 21:51:28)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=67228d23472b, datestamp=1549272140 (Feb 04 2019 09:22:20)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=9334439da7fd, datestamp=1549228770 (Feb 03 2019 21:19:30)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=1952b5f71af0, datestamp=1549185968 (Feb 03 2019 09:26:08)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Examining (for databases) backup set with group_id=0, nonce=00b01bf72880, datestamp=1549153378 (Feb 03 2019 00:22:58)
+0074.580 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.580 (0) Number of backup sets in history: 20; groups (files): 1
+0074.581 (0) Examining (for files) backup set with nonce=416de92a7764, datestamp=1549855041 (Feb 11 2019 03:17:21)
+0074.582 (0) This backup set is the backup set just made, so will not be deleted.
+0074.583 (0) This backup set is the backup set just made, so will not be deleted.
+0074.583 (0) This backup set is the backup set just made, so will not be deleted.
+0074.583 (0) This backup set is the backup set just made, so will not be deleted.
+0074.583 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0074.585 (0) Examining (for files) backup set with nonce=4919331fc043, datestamp=1549834124 (Feb 10 2019 21:28:44)
+0074.585 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=0203bfc9c9e2, datestamp=1549791618 (Feb 10 2019 09:40:18)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=e621f7573409, datestamp=1549747492 (Feb 09 2019 21:24:52)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=f1b29dd5319b, datestamp=1549706411 (Feb 09 2019 10:00:11)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=d1243a2ed7fc, datestamp=1549670315 (Feb 08 2019 23:58:35)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=0dc440f9a14a, datestamp=1549620014 (Feb 08 2019 10:00:14)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=1df5df60ba92, datestamp=1549581236 (Feb 07 2019 23:13:56)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.586 (0) Examining (for files) backup set with nonce=400697ee1c55, datestamp=1549532006 (Feb 07 2019 09:33:26)
+0074.586 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=f3598de2ce01, datestamp=1549487951 (Feb 06 2019 21:19:11)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=6439ba713485, datestamp=1549445099 (Feb 06 2019 09:24:59)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=267422be82bd, datestamp=1549401966 (Feb 05 2019 21:26:06)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=5f20a0e3e0b9, datestamp=1549359593 (Feb 05 2019 09:39:53)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=48b8106890da, datestamp=1549317088 (Feb 04 2019 21:51:28)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=67228d23472b, datestamp=1549272140 (Feb 04 2019 09:22:20)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=9334439da7fd, datestamp=1549228770 (Feb 03 2019 21:19:30)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=1952b5f71af0, datestamp=1549185968 (Feb 03 2019 09:26:08)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Examining (for files) backup set with nonce=00b01bf72880, datestamp=1549153378 (Feb 03 2019 00:22:58)
+0074.587 (0) This backup set remains non-empty (f=0/d=1); will retain in history
+0074.587 (0) Retain: saving new backup history (sets now: 20) and finishing retain operation
+0074.591 (0) Resume backup (416de92a7764, 0): finish run
+0074.603 (0) Decremented the semaphore (fd) by 1
+0074.606 (0) Semaphore (fd) unlocked
+0074.607 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0074.613 (0) No email will/can be sent - the user has not configured an email address.
+0074.614 (0) The backup apparently succeeded and is now complete
