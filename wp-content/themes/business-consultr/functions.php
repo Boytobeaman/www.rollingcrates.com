@@ -46,6 +46,11 @@ function business_consultr_scripts(){
 			'version' => '2.2.1'
 		),
 		array(
+			'handler'  => 'business-consultr-blocks',
+			'style'    => get_theme_file_uri( '/assets/css/blocks.min.css' ),
+			'absolute' => true,
+		),
+		array(
 			'handler'  => 'business-consultr-style',
 			'style'    => get_stylesheet_uri(),
 			'absolute' => true,
@@ -56,7 +61,12 @@ function business_consultr_scripts(){
 			'absolute'   => true,
 			'prefix'     => '',
 			'dependency' => array( 'jquery', 'masonry' )
-		)
+		),
+		array(
+			'handler'  => 'business-consultr-skip-link-focus-fix',
+			'script'   => get_theme_file_uri( '/assets/js/skip-link-focus-fix.min.js' ),
+			'absolute' => true,
+		),
 	);
 
 	business_consultr_enqueue( $scripts );
@@ -80,6 +90,18 @@ function business_consultr_scripts(){
 	}
 }
 add_action( 'wp_enqueue_scripts', 'business_consultr_scripts' );
+
+/**
+* Enqueue editor styles for Gutenberg
+*/
+
+function business_consultr_block_editor_styles() {
+	// Block styles.
+	wp_enqueue_style( 'business-consultr-block-editor-style', get_theme_file_uri( '/assets/css/editor-blocks.min.css' ) );
+	// Google Font
+	wp_enqueue_style( 'business-consultr-google-font', 'https://fonts.googleapis.com/css?family=Poppins:300,400,400i,500,600,700,700i', false );
+}
+add_action( 'enqueue_block_editor_assets', 'business_consultr_block_editor_styles' );
 
 /**
 * Adds a submit button in search form
@@ -391,6 +413,23 @@ function business_consultr_has_sidebar(){
 }
 endif;
 
+/**
+* Check whether the sidebar is active or not.
+*
+* @see https://codex.wordpress.org/Conditional_Tags
+* @since Business Consultr 1.1.9
+* @return bool whether the sidebar is active or not.
+*/
+function business_consultr_is_active_footer_sidebar(){
+
+	for( $i = 1; $i <= 4; $i++ ){
+		if ( is_active_sidebar( 'business-consultr-footer-sidebar-'.$i ) ) : 
+			return true;
+		endif;
+	}
+	return false;
+}
+
 if( !function_exists( 'business_consultr_is_search' ) ):
 /**
 * Conditional function for search page / jet pack supported
@@ -422,6 +461,7 @@ require_once get_parent_theme_file_path( '/inc/template-tags.php' );
 require_once get_parent_theme_file_path( '/modules/loader.php' );
 require_once get_parent_theme_file_path( '/trt-customize-pro/example-1/class-customize.php' );
 require_once get_parent_theme_file_path( '/modules/tgm-plugin-activation/loader.php' );
+require_once get_parent_theme_file_path( '/theme-info/theme-info.php' );
 
 if( !function_exists( 'business_consultr_get_homepage_sections' ) ):
 /**
@@ -445,28 +485,6 @@ function business_consultr_get_homepage_sections(){
 	return apply_filters( 'business_consultr_homepage_sections', $arr );
 }
 endif;
-
-/**
-* Predefined demo Import file setup. 
-* @link https://wordpress.org/plugins/one-click-demo-import/
-* @since Business Consultr 1.0.0
-* @return array
-*/
-function business_consultr_ocdi_import_files() {
-	return array(
-		array(
-		  'import_file_name'             => esc_html__( 'Theme Demo Content', 'business-consultr' ),
-		  'categories'                   => array( 'Category 1', 'Category 2' ),
-		  'local_import_file'            => trailingslashit( get_template_directory() ) . 'ocdi/business-consultr.xml',
-		  'local_import_widget_file'     => trailingslashit( get_template_directory() ) . 'ocdi/business-consultr.wie',
-		  'local_import_customizer_file' => trailingslashit( get_template_directory() ) . 'ocdi/business-consultr.dat',
-		  'import_preview_image_url'     => trailingslashit( get_template_directory() ) . 'screenshot.png',
-		  'import_notice'                => __( 'Please waiting for a few minutes, do not close the window or refresh the page until the data is imported.', 'business-consultr' ),
-		  'preview_url'                  => 'https://www.demo.keonthemes.com/business-consultr',
-		),
-	);
-}
-add_filter( 'pt-ocdi/import_files', 'business_consultr_ocdi_import_files' );
 
 /**
 * Change menu, front page display as in demo after completing demo import

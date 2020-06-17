@@ -199,37 +199,6 @@ function scrollToTop ( param ){
 		return true;
 	}
 };
-/**
- * File skip-link-focus-fix.js.
- *
- * Helps with accessibility for keyboard only users.
- *
- * Learn more: https://git.io/vWdr2
- */
-+(function() {
-	var isIe = /(trident|msie)/i.test( navigator.userAgent );
-
-	if ( isIe && document.getElementById && window.addEventListener ) {
-		window.addEventListener( 'hashchange', function() {
-			var id = location.hash.substring( 1 ),
-				element;
-
-			if ( ! ( /^[A-z0-9_-]+$/.test( id ) ) ) {
-				return;
-			}
-
-			element = document.getElementById( id );
-
-			if ( element ) {
-				if ( ! ( /^(?:a|select|input|button|textarea)$/i.test( element.tagName ) ) ) {
-					element.tabIndex = -1;
-				}
-
-				element.focus();
-			}
-		}, false );
-	}
-})();
 
 /**
 * Setting up functionality for alternative menu
@@ -240,7 +209,7 @@ function wpMenuAccordion( selector ){
 	var $ele = selector + ' .menu-item-has-children > a';
 	$( $ele ).each( function(){
 		var text = $( this ).text();
-		text = text + '<span class="kfi kfi-arrow-carrot-down-alt2 triangle"></span>';
+		text = text + '<span class="kfi kfi-arrow-triangle-down triangle"></span>';
 		$( this ).html( text );
 	});
 
@@ -270,22 +239,6 @@ function wpMenuAccordion( selector ){
 };
 
 /**
-* Main menu height
-* @since Business Consultr 1.0.0
-*/
-
-function maintainMenuHeight(){
-	var init = function(){
-		var h = parseInt( jQuery( '.site-branding-outer' ).height() );
-		jQuery( '#primary-nav-container' ).height( h );
-		jQuery( '#header-bottom-right-outer .callback-button' ).height( h );
-	}
-	
-	init();
-	jQuery( window ).resize( init );
-}
-
-/**
 * Fire for fixed header
 * @since Business Consultr 1.0.0
 */
@@ -304,44 +257,52 @@ function primaryHeader(){
 		}
 	},
 	setPosition = function( top ){
+		width = $( window ).width();
 		$( '#masthead' ).css( {
 			'top' : top
 		});
+		if( BUSINESSCONSULTR.is_admin_bar_showing ){
+			$( '#masthead' ).css( {
+				'top' : top + 32
+			});
+		}
+		if( BUSINESSCONSULTR.is_admin_bar_showing && width <= 782 ){
+			$( '#masthead' ).css( {
+				'top' : top + 46
+			});
+		}
 	},
 	init = function(){
 		h = $( '.top-header' ).outerHeight();
 		setPosition( h );
 	},
+
 	onScroll = function(){
 		var scroll = jQuery(document).scrollTop(),
 			pos = 0,
 			height = h,
 			width = $( window ).width();
-
-		if( BUSINESSCONSULTR.is_admin_bar_showing && width >= 782 ){
-			scroll = scroll+32;
+		if( BUSINESSCONSULTR.is_admin_bar_showing ){
+			scroll = scroll + 32;
+			$( '#masthead' ).css( {
+				'top' : 0
+			});
 		}
-
 		if( height ){
 			if( height >= scroll ){
 				pos = height-jQuery(document).scrollTop();
 				removeClass();
-			}else if( BUSINESSCONSULTR.is_admin_bar_showing && width >= 782 ){
-				pos = 32;
-				addClass()
-			}else{
+			}
+			else{
 				addClass();
 			}
-
 		}else{
-
 			var mh = $( '#masthead' ).outerHeight(),
 				scroll = jQuery(document).scrollTop();
 			if( mh >= scroll ){
 				if( BUSINESSCONSULTR.is_admin_bar_showing && width >= 782 ){
 					pos = 32-scroll;
 				}else{
-
 					pos = -scroll;
 				}
 				removeClass();
@@ -355,10 +316,9 @@ function primaryHeader(){
 				addClass();
 			}
 		}
-		
 		setPosition( pos );
 	};
-	
+
 	$( window ).resize(function(){
 		init();
 		onScroll();
@@ -372,6 +332,18 @@ function primaryHeader(){
 	jQuery( window ).load( function(){
 		init();
 		onScroll();
+	});
+}
+
+/**
+* Fire for masthead height and top header
+* @since Business Consultr Pro 1.0.0
+*/
+
+function mastheadHeight(){
+	var mhp = $( '#masthead' ).outerHeight();
+	$( '.wrap-inner-banner, .block-slider' ).css({
+		'margin-top' : mhp
 	});
 }
 
@@ -498,9 +470,48 @@ jQuery( '.kt-contact-form-area input, .kt-contact-form-area textarea' ).on( 'blu
 	jQuery('label[for="'+target+'"]').removeClass( 'move' );
 });
 
+/**
+* Make menu accessibility
+* @since Business Consultr 1.0.0
+*/
+
+var body, masthead, siteNavigation, socialNavigation;
+
+function initMainNavigation( container ) {
+
+	// Add dropdown toggle that displays child menu items.
+	var dropdownToggle = $( '<button />', { 'class': 'down-arrow-toggle', 'aria-expanded': false })
+		.append( '<span class="kfi kfi-arrow-triangle-down"></span>' )
+
+	container.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( dropdownToggle );
+
+	// Toggle buttons and submenu items with active children menu items.
+	container.find( '.current-menu-ancestor > button' ).addClass( 'toggled-on' );
+	container.find( '.current-menu-ancestor > .sub-menu' ).addClass( 'toggled-on' );
+
+	// Add menu items with submenus to aria-haspopup="true".
+	container.find( '.menu-item-has-children, .page_item_has_children' ).attr( 'aria-haspopup', 'true' );
+
+	container.find( '.down-arrow-toggle' ).click( function( e ) {
+		var _this            = $( this );
+
+		e.preventDefault();
+		_this.toggleClass( 'toggled-on' );
+		_this.parent().first().toggleClass('focus');
+
+		_this.attr( 'aria-expanded', _this.attr( 'aria-expanded' ) === 'false' ? 'true' : 'false' );
+	} );
+}
+
+initMainNavigation( $( '.main-navigation' ) );
+
+masthead         = $( '#masthead' );
+siteNavigation   = masthead.find( '#site-navigation' );
+socialNavigation = masthead.find( '#social-navigation' );
+
 jQuery( document ).ready( function(){
-	maintainMenuHeight();
 	primaryHeader();
+	mastheadHeight();
 	
 	$( '.scroll-to' ).scrollTo();
 
@@ -559,6 +570,10 @@ jQuery( document ).ready( function(){
     */
     $( '#masthead #s' ).attr( 'placeholder', BUSINESSCONSULTR.search_placeholder );
     $( '#searchform #s' ).attr( 'placeholder', BUSINESSCONSULTR.search_default_placeholder );
+});
+
+jQuery( window ).resize(function(){
+	mastheadHeight();
 });
 
 jQuery( window ).load( function(){

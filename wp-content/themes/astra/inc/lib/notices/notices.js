@@ -64,13 +64,8 @@
 
 			var link   = $( this ).attr( 'href' ) || '';
 			var target = $( this ).attr( 'target' ) || '';
-			if( '' !== link ) {
-
-				if ( '_blank' !== target) {
-					window.open(link, target);
-				} else {
-					window.location.replace(link)
-				}
+			if( '' !== link && '_blank' === target ) {
+				window.open(link , '_blank');
 			}
 		},
 
@@ -85,6 +80,7 @@
 				type: 'POST',
 				data: {
 					action            : 'astra-notice-dismiss',
+					nonce             : astraNotices._notice_nonce,
 					notice_id         : notice_id,
 					repeat_notice_after : parseInt( repeat_notice_after ),
 				},

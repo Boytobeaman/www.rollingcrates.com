@@ -3,27 +3,39 @@
  */
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
-import { RawHTML } from '@wordpress/element';
+import { DEFAULT_COLUMNS } from '@woocommerce/block-settings';
+import { Icon, widgets } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
  */
-import './style.scss';
+import './editor.scss';
 import Block from './block';
-import getShortcode from '../../utils/get-shortcode';
-import { IconWidgets } from '../../components/icons';
+import { deprecatedConvertToShortcode } from '../../utils/deprecations';
 
 registerBlockType( 'woocommerce/handpicked-products', {
 	title: __( 'Hand-picked Products', 'woo-gutenberg-products-block' ),
-	icon: <IconWidgets />,
+	icon: {
+		src: <Icon srcElement={ widgets } />,
+		foreground: '#96588a',
+	},
 	category: 'woocommerce',
-	keywords: [ __( 'WooCommerce', 'woo-gutenberg-products-block' ) ],
+	keywords: [
+		__( 'Handpicked Products', 'woo-gutenberg-products-block' ),
+		__( 'WooCommerce', 'woo-gutenberg-products-block' ),
+	],
 	description: __(
 		'Display a selection of hand-picked products in a grid.',
 		'woo-gutenberg-products-block'
 	),
 	supports: {
 		align: [ 'wide', 'full' ],
+		html: false,
+	},
+	example: {
+		attributes: {
+			isPreview: true,
+		},
 	},
 	attributes: {
 		/**
@@ -38,7 +50,7 @@ registerBlockType( 'woocommerce/handpicked-products', {
 		 */
 		columns: {
 			type: 'number',
-			default: wc_product_block_data.default_columns,
+			default: DEFAULT_COLUMNS,
 		},
 
 		/**
@@ -47,6 +59,19 @@ registerBlockType( 'woocommerce/handpicked-products', {
 		editMode: {
 			type: 'boolean',
 			default: true,
+		},
+
+		/**
+		 * Content visibility setting
+		 */
+		contentVisibility: {
+			type: 'object',
+			default: {
+				title: true,
+				price: true,
+				rating: true,
+				button: true,
+			},
 		},
 
 		/**
@@ -64,28 +89,73 @@ registerBlockType( 'woocommerce/handpicked-products', {
 			type: 'array',
 			default: [],
 		},
+
+		/**
+		 * How to align cart buttons.
+		 */
+		alignButtons: {
+			type: 'boolean',
+			default: false,
+		},
+
+		/**
+		 * Are we previewing?
+		 */
+		isPreview: {
+			type: 'boolean',
+			default: false,
+		},
 	},
+
+	deprecated: [
+		{
+			// Deprecate shortcode save method in favor of dynamic rendering.
+			attributes: {
+				align: {
+					type: 'string',
+				},
+				columns: {
+					type: 'number',
+					default: DEFAULT_COLUMNS,
+				},
+				editMode: {
+					type: 'boolean',
+					default: true,
+				},
+				contentVisibility: {
+					type: 'object',
+					default: {
+						title: true,
+						price: true,
+						rating: true,
+						button: true,
+					},
+				},
+				orderby: {
+					type: 'string',
+					default: 'date',
+				},
+				products: {
+					type: 'array',
+					default: [],
+				},
+			},
+			save: deprecatedConvertToShortcode(
+				'woocommerce/handpicked-products'
+			),
+		},
+	],
 
 	/**
 	 * Renders and manages the block.
+	 *
+	 * @param {Object} props Props to pass to block.
 	 */
 	edit( props ) {
 		return <Block { ...props } />;
 	},
 
-	/**
-	 * Save the block content in the post content. Block content is saved as a products shortcode.
-	 *
-	 * @return string
-	 */
-	save( props ) {
-		const {
-			align,
-		} = props.attributes; /* eslint-disable-line react/prop-types */
-		return (
-			<RawHTML className={ align ? `align${ align }` : '' }>
-				{ getShortcode( props, 'woocommerce/handpicked-products' ) }
-			</RawHTML>
-		);
+	save() {
+		return null;
 	},
 } );

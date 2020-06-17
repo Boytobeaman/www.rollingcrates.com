@@ -60,6 +60,12 @@ class Cdnfsd_CacheFlush {
 			}
 		}
 
+		global $wp_rewrite;   // required by many Util_PageUrls methods
+		if ( empty( $wp_rewrite ) ) {
+			error_log('Post was modified before wp_rewrite initialization. Cant flush cache.');
+			return false;
+		}
+
 		$full_urls = array();
 		$post = null;
 		$terms = array();
@@ -197,6 +203,7 @@ class Cdnfsd_CacheFlush {
 	 * @param unknown $url
 	 */
 	static public function w3tc_flush_url( $url, $extras = null ) {
+		$config = Dispatcher::config();
 		if ( $config->get_boolean( 'cdn.flush_manually' ) ) {
 			// in this mode flush only on purge button clicks
 			if ( !isset( $extras['ui_action'] ) ) {

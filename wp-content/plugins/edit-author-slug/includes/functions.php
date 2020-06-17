@@ -142,15 +142,6 @@ function ba_eas_auto_update_user_nicename( $user_id = 0, $bulk = false, $structu
 	// Add it back in case other plugins do some updating.
 	add_action( 'profile_update', 'ba_eas_auto_update_user_nicename' );
 
-	// Only delete the `userslugs` cache if the user was successfully updated.
-	// TODO: Remove when WP 4.5 is the minimum version.
-	// See https://core.trac.wordpress.org/ticket/35750.
-	if ( ! empty( $user_id ) && ! is_wp_error( $user_id ) ) {
-
-		// Delete the old nicename from the cache.
-		wp_cache_delete( $old_nicename, 'userslugs' );
-	}
-
 	return $user_id;
 }
 
@@ -234,7 +225,7 @@ function ba_eas_auto_update_user_nicename_bulk( $do_bulk = false ) {
 		}
 	}
 
-	// If we have some when statements, the update the nicenames.
+	// If we have some when statements, then update the nicenames.
 	if ( ! empty( $when ) ) {
 
 		// Setup our when and where statements.
@@ -253,7 +244,7 @@ function ba_eas_auto_update_user_nicename_bulk( $do_bulk = false ) {
 			END
 			{$where_sql}
 		";
-		$updated = $wpdb->query( $sql ); // WPCS: unprepared SQL ok.
+		$updated = $wpdb->query( $sql ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- This is actually prepared above.
 	}
 
 	// Unset some vars to help with memory.
@@ -651,7 +642,8 @@ function ba_eas_author_link( $link = '', $user_id = 0 ) {
 		$role = ba_eas_get_user_role( $user->roles, $user_id );
 
 		// Make sure we have a valid slug.
-		$slug = empty( ba_eas()->role_slugs[ $role ]['slug'] ) ? ba_eas()->author_base : ba_eas()->role_slugs[ $role ]['slug'];
+		$slug = isset( ba_eas()->role_slugs[ $role ]['slug'] ) ? ba_eas()->role_slugs[ $role ]['slug'] : '';
+		$slug = empty( $slug ) ? ba_eas()->author_base : $slug;
 
 		// Add the role slug to the link.
 		$link = str_replace( '%ba_eas_author_role%', $slug, $link );
@@ -705,9 +697,10 @@ function ba_eas_template_include( $template ) {
 		$role = ba_eas_get_user_role( $author->roles, $author->ID );
 
 		// Get the role slug.
+		$slug      = isset( ba_eas()->role_slugs[ $role ]['slug'] ) ? ba_eas()->role_slugs[ $role ]['slug'] : '';
 		$role_slug = '';
-		if ( ! empty( ba_eas()->role_slugs[ $role ]['slug'] ) ) {
-			$role_slug = ba_eas()->role_slugs[ $role ]['slug'];
+		if ( ! empty( $slug ) ) {
+			$role_slug = $slug;
 		}
 
 		// Set the templates array.

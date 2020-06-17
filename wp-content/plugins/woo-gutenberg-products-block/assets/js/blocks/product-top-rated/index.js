@@ -2,20 +2,27 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import Gridicon from 'gridicons';
-import { registerBlockType } from '@wordpress/blocks';
-import { RawHTML } from '@wordpress/element';
+import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { Icon, thumbUp } from '@woocommerce/icons';
+import { without } from 'lodash';
 
 /**
  * Internal dependencies
  */
 import Block from './block';
-import getShortcode from '../../utils/get-shortcode';
-import sharedAttributes from '../../utils/shared-attributes';
+import { deprecatedConvertToShortcode } from '../../utils/deprecations';
+import sharedAttributes, {
+	sharedAttributeBlockTypes,
+} from '../../utils/shared-attributes';
 
-registerBlockType( 'woocommerce/product-top-rated', {
+const blockTypeName = 'woocommerce/product-top-rated';
+
+registerBlockType( blockTypeName, {
 	title: __( 'Top Rated Products', 'woo-gutenberg-products-block' ),
-	icon: <Gridicon icon="trophy" />,
+	icon: {
+		src: <Icon srcElement={ thumbUp } />,
+		foreground: '#96588a',
+	},
 	category: 'woocommerce',
 	keywords: [ __( 'WooCommerce', 'woo-gutenberg-products-block' ) ],
 	description: __(
@@ -24,31 +31,46 @@ registerBlockType( 'woocommerce/product-top-rated', {
 	),
 	supports: {
 		align: [ 'wide', 'full' ],
+		html: false,
+	},
+	example: {
+		attributes: {
+			isPreview: true,
+		},
 	},
 	attributes: {
 		...sharedAttributes,
 	},
 
+	transforms: {
+		from: [
+			{
+				type: 'block',
+				blocks: without( sharedAttributeBlockTypes, blockTypeName ),
+				transform: ( attributes ) =>
+					createBlock( 'woocommerce/product-top-rated', attributes ),
+			},
+		],
+	},
+
+	deprecated: [
+		{
+			// Deprecate shortcode save method in favor of dynamic rendering.
+			attributes: sharedAttributes,
+			save: deprecatedConvertToShortcode( blockTypeName ),
+		},
+	],
+
 	/**
 	 * Renders and manages the block.
+	 *
+	 * @param {Object} props Props to pass to block.
 	 */
 	edit( props ) {
 		return <Block { ...props } />;
 	},
 
-	/**
-	 * Save the block content in the post content. Block content is saved as a products shortcode.
-	 *
-	 * @return string
-	 */
-	save( props ) {
-		const {
-			align,
-		} = props.attributes; /* eslint-disable-line react/prop-types */
-		return (
-			<RawHTML className={ align ? `align${ align }` : '' }>
-				{ getShortcode( props, 'woocommerce/product-top-rated' ) }
-			</RawHTML>
-		);
+	save() {
+		return null;
 	},
 } );

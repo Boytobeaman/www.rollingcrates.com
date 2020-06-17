@@ -61,6 +61,11 @@ function Businessconsultr_Customizer_general_settings( $settings ){
 			'transport' => 'postMessage',
 			'type'      => 'checkbox',
 		),
+		'disable_search_icon' => array(
+			'label'     => esc_html__( 'Disable Header Search Icon', 'business-consultr' ),
+			'section'   => 'header_options',
+			'type'      => 'checkbox',
+		),
 		'header_button' => array(
 			'label'     => esc_html__( 'Header Button Text', 'business-consultr' ),
 			'section'   => 'header_options',

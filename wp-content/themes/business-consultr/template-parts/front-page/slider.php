@@ -24,13 +24,13 @@ if( !empty( $slider_ids ) && is_array( $slider_ids ) && count( $slider_ids ) > 0
 				)));
 				
 				while ( $query->have_posts() ) :  $query->the_post();
-					$image = business_consultr_get_thumbnail_url( array( 'size' => 'business-consultr-1920-1200' ) );
+					$image = business_consultr_get_thumbnail_url( array( 'size' => 'business-consultr-1920-750' ) );
 			?>
 					<div class="slide-item" style="background-image: url( <?php echo esc_url( $image ); ?> );">
 						<div class="banner-overlay">
 					    	<div class="container">
 					    		<div class="row">
-					    			<div class="col-xs-12 col-sm-10 col-md-10 col-sm-offset-1 col-md-offset-1">
+					    			<div class="col-sm-12 col-md-10 col-md-offset-1">
 					    				<div class="slide-inner text-center">
 					    					<div class="post-content-inner-wrap">
 					    						<div class="content">

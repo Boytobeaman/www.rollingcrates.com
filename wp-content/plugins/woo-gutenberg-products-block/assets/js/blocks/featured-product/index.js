@@ -2,12 +2,17 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
+import { InnerBlocks } from '@wordpress/block-editor';
 import { registerBlockType } from '@wordpress/blocks';
+import { DEFAULT_HEIGHT } from '@woocommerce/block-settings';
+import { Icon, star } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
  */
 import './style.scss';
+import './editor.scss';
+import { example } from './example';
 import Block from './block';
 
 /**
@@ -15,16 +20,21 @@ import Block from './block';
  */
 registerBlockType( 'woocommerce/featured-product', {
 	title: __( 'Featured Product', 'woo-gutenberg-products-block' ),
-	icon: 'star-filled',
+	icon: {
+		src: <Icon srcElement={ star } />,
+		foreground: '#96588a',
+	},
 	category: 'woocommerce',
 	keywords: [ __( 'WooCommerce', 'woo-gutenberg-products-block' ) ],
 	description: __(
-		'Visually highlight a product and encourage prompt action.',
+		'Visually highlight a product or variation and encourage prompt action.',
 		'woo-gutenberg-products-block'
 	),
 	supports: {
 		align: [ 'wide', 'full' ],
+		html: false,
 	},
+	example,
 	attributes: {
 		/**
 		 * Alignment of content inside block.
@@ -48,6 +58,21 @@ registerBlockType( 'woocommerce/featured-product', {
 		editMode: {
 			type: 'boolean',
 			default: true,
+		},
+
+		/**
+		 * Focus point for the background image
+		 */
+		focalPoint: {
+			type: 'object',
+		},
+
+		/**
+		 * A fixed height for the block.
+		 */
+		height: {
+			type: 'number',
+			default: DEFAULT_HEIGHT,
 		},
 
 		/**
@@ -110,10 +135,20 @@ registerBlockType( 'woocommerce/featured-product', {
 			type: 'boolean',
 			default: true,
 		},
+
+		/**
+		 * Product preview.
+		 */
+		previewProduct: {
+			type: 'object',
+			default: null,
+		},
 	},
 
 	/**
 	 * Renders and manages the block.
+	 *
+	 * @param {Object} props Props to pass to block.
 	 */
 	edit( props ) {
 		return <Block { ...props } />;
@@ -123,6 +158,6 @@ registerBlockType( 'woocommerce/featured-product', {
 	 * Block content is rendered in PHP, not via save function.
 	 */
 	save() {
-		return null;
+		return <InnerBlocks.Content />;
 	},
 } );

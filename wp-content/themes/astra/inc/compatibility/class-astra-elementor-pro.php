@@ -92,7 +92,7 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 		 * @since 1.2.7
 		 * @return void
 		 */
-		function do_template_parts() {
+		public function do_template_parts() {
 			// Is Archive?
 			$did_location = Module::instance()->get_locations_manager()->do_location( 'archive' );
 			if ( $did_location ) {
@@ -124,7 +124,7 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 		 * @since 1.2.7
 		 * @return void
 		 */
-		function do_template_part_404() {
+		public function do_template_part_404() {
 			if ( is_404() ) {
 
 				// Is Single?
@@ -141,7 +141,7 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 		 * @since 1.2.7
 		 * @return void
 		 */
-		function override_meta() {
+		public function override_meta() {
 
 			// don't override meta for `elementor_library` post type.
 			if ( 'elementor_library' == get_post_type() ) {
@@ -172,7 +172,7 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 		 * @param  integer $post_id  Post ID.
 		 * @return void
 		 */
-		function override_with_post_meta( $post_id = 0 ) {
+		public function override_with_post_meta( $post_id = 0 ) {
 			// Override! Page Title.
 			$title = get_post_meta( $post_id, 'site-post-title', true );
 			if ( 'disabled' === $title ) {
@@ -295,7 +295,7 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 		 * @return array
 		 * @since  1.4.9
 		 */
-		function render_post_class( $classes ) {
+		public function render_post_class( $classes ) {
 			$post_class = array( 'elementor-post elementor-grid-item', 'elementor-portfolio-item' );
 			$result     = array_intersect( $classes, $post_class );
 
@@ -304,10 +304,66 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 					$classes,
 					array(
 						// Astra common grid.
+						'ast-col-xs-1',
+						'ast-col-xs-2',
+						'ast-col-xs-3',
+						'ast-col-xs-4',
+						'ast-col-xs-5',
+						'ast-col-xs-6',
+						'ast-col-xs-7',
+						'ast-col-xs-8',
+						'ast-col-xs-9',
+						'ast-col-xs-10',
+						'ast-col-xs-11',
+						'ast-col-xs-12',
+						'ast-col-sm-1',
+						'ast-col-sm-2',
+						'ast-col-sm-3',
+						'ast-col-sm-4',
+						'ast-col-sm-5',
+						'ast-col-sm-6',
+						'ast-col-sm-7',
+						'ast-col-sm-8',
+						'ast-col-sm-9',
+						'ast-col-sm-10',
+						'ast-col-sm-11',
 						'ast-col-sm-12',
-						'ast-col-md-8',
+						'ast-col-md-1',
+						'ast-col-md-2',
+						'ast-col-md-3',
+						'ast-col-md-4',
+						'ast-col-md-5',
 						'ast-col-md-6',
+						'ast-col-md-7',
+						'ast-col-md-8',
+						'ast-col-md-9',
+						'ast-col-md-10',
+						'ast-col-md-11',
 						'ast-col-md-12',
+						'ast-col-lg-1',
+						'ast-col-lg-2',
+						'ast-col-lg-3',
+						'ast-col-lg-4',
+						'ast-col-lg-5',
+						'ast-col-lg-6',
+						'ast-col-lg-7',
+						'ast-col-lg-8',
+						'ast-col-lg-9',
+						'ast-col-lg-10',
+						'ast-col-lg-11',
+						'ast-col-lg-12',
+						'ast-col-xl-1',
+						'ast-col-xl-2',
+						'ast-col-xl-3',
+						'ast-col-xl-4',
+						'ast-col-xl-5',
+						'ast-col-xl-6',
+						'ast-col-xl-7',
+						'ast-col-xl-8',
+						'ast-col-xl-9',
+						'ast-col-xl-10',
+						'ast-col-xl-11',
+						'ast-col-xl-12',
 
 						// Astra Blog / Single Post.
 						'ast-article-post',
@@ -346,6 +402,7 @@ if ( ! class_exists( 'Astra_Elementor_Pro' ) ) :
 					)
 				);
 			}
+
 			return $classes;
 		}
 

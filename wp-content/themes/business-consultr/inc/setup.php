@@ -54,17 +54,17 @@ function business_consultr_setup() {
 	) );
 
 	add_theme_support( 'custom-header', array(
-		'default-image'    => get_parent_theme_file_uri( '/assets/images/placeholder/business-consultr-banner-1920-850.jpg' ),
+		'default-image'    => get_parent_theme_file_uri( '/assets/images/placeholder/business-consultr-banner-1920-380.jpg' ),
 		'width'            => 1920,
-		'height'           => 850,
+		'height'           => 380,
 		'flex-height'      => true,
 		'wp-head-callback' => 'business_consultr_header_style',
 	));
 
 	register_default_headers( array(
 		'default-image' => array(
-			'url'           => '%s/assets/images/placeholder/business-consultr-banner-1920-850.jpg',
-			'thumbnail_url' => '%s/assets/images/placeholder/business-consultr-banner-1920-850.jpg',
+			'url'           => '%s/assets/images/placeholder/business-consultr-banner-1920-380.jpg',
+			'thumbnail_url' => '%s/assets/images/placeholder/business-consultr-banner-1920-380.jpg',
 			'description'   => esc_html__( 'Default Header Image', 'business-consultr' ),
 		),
 	) );
@@ -109,9 +109,105 @@ function business_consultr_setup() {
 
 	add_theme_support( 'woocommerce' );
 
+	/*
+	* This theme styles the visual editor to resemble the theme style,
+	* specifically font, colors, icons, and column width.
+	*/
+	
+	add_editor_style( array( '/assets/css/editor-style.min.css') );
+
+	// Gutenberg support
+	add_theme_support( 'editor-color-palette', array(
+       	array(
+			'name' => esc_html__( 'Tan', 'business-consultr' ),
+			'slug' => 'tan',
+			'color' => '#E6DBAD',
+       	),
+       	array(
+           	'name' => esc_html__( 'Yellow', 'business-consultr' ),
+           	'slug' => 'yellow',
+           	'color' => '#FDE64B',
+       	),
+       	array(
+           	'name' => esc_html__( 'Orange', 'business-consultr' ),
+           	'slug' => 'orange',
+           	'color' => '#ED7014',
+       	),
+       	array(
+           	'name' => esc_html__( 'Red', 'business-consultr' ),
+           	'slug' => 'red',
+           	'color' => '#D0312D',
+       	),
+       	array(
+           	'name' => esc_html__( 'Pink', 'business-consultr' ),
+           	'slug' => 'pink',
+           	'color' => '#b565a7',
+       	),
+       	array(
+           	'name' => esc_html__( 'Purple', 'business-consultr' ),
+           	'slug' => 'purple',
+           	'color' => '#A32CC4',
+       	),
+       	array(
+           	'name' => esc_html__( 'Blue', 'business-consultr' ),
+           	'slug' => 'blue',
+           	'color' => '#3A43BA',
+       	),
+       	array(
+           	'name' => esc_html__( 'Green', 'business-consultr' ),
+           	'slug' => 'green',
+           	'color' => '#3BB143',
+       	),
+       	array(
+           	'name' => esc_html__( 'Brown', 'business-consultr' ),
+           	'slug' => 'brown',
+           	'color' => '#231709',
+       	),
+       	array(
+           	'name' => esc_html__( 'Grey', 'business-consultr' ),
+           	'slug' => 'grey',
+           	'color' => '#6C626D',
+       	),
+       	array(
+           	'name' => esc_html__( 'Black', 'business-consultr' ),
+           	'slug' => 'black',
+           	'color' => '#000000',
+       	),
+   	));
+
+	add_theme_support( 'align-wide' );
+	add_theme_support( 'editor-font-sizes', array(
+	   	array(
+	       	'name' => esc_html__( 'small', 'business-consultr' ),
+	       	'shortName' => esc_html__( 'S', 'business-consultr' ),
+	       	'size' => 12,
+	       	'slug' => 'small'
+	   	),
+	   	array(
+	       	'name' => esc_html__( 'regular', 'business-consultr' ),
+	       	'shortName' => esc_html__( 'M', 'business-consultr' ),
+	       	'size' => 16,
+	       	'slug' => 'regular'
+	   	),
+	   	array(
+	       	'name' => esc_html__( 'larger', 'business-consultr' ),
+	       	'shortName' => esc_html__( 'L', 'business-consultr' ),
+	       	'size' => 36,
+	       	'slug' => 'larger'
+	   	),
+	   	array(
+	       	'name' => esc_html__( 'huge', 'business-consultr' ),
+	       	'shortName' => esc_html__( 'XL', 'business-consultr' ),
+	       	'size' => 48,
+	       	'slug' => 'huge'
+	   	)
+	));
+	add_theme_support( 'editor-styles' );
+	add_theme_support( 'wp-block-styles' );
+
 	add_image_size( 'business-consultr-1920-1200', 1920, 1200, true );
+	add_image_size( 'business-consultr-1920-750', 1920, 750, true );
 	add_image_size( 'business-consultr-1920-850', 1920, 850, true );
-	add_image_size( 'business-consultr-1200-850', 1200, 850, true );
 	add_image_size( 'business-consultr-1170-760', 1170, 760, true );
 	add_image_size( 'business-consultr-390-320', 390, 320, true );
 }

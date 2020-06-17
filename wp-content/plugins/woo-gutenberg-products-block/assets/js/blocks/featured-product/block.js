@@ -2,173 +2,77 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import apiFetch from '@wordpress/api-fetch';
 import {
 	AlignmentToolbar,
 	BlockControls,
+	InnerBlocks,
 	InspectorControls,
 	MediaUpload,
 	MediaUploadCheck,
 	PanelColorSettings,
-	RichText,
 	withColors,
-} from '@wordpress/editor';
+	RichText,
+} from '@wordpress/block-editor';
+import { withSelect } from '@wordpress/data';
 import {
 	Button,
+	FocalPointPicker,
 	IconButton,
 	PanelBody,
 	Placeholder,
 	RangeControl,
+	ResizableBox,
 	Spinner,
 	ToggleControl,
 	Toolbar,
 	withSpokenMessages,
 } from '@wordpress/components';
 import classnames from 'classnames';
-import { Component, Fragment } from '@wordpress/element';
-import { compose } from '@wordpress/compose';
-import { debounce, isObject } from 'lodash';
+import { Fragment, Component } from '@wordpress/element';
+import { compose, createHigherOrderComponent } from '@wordpress/compose';
+import { isEmpty } from 'lodash';
 import PropTypes from 'prop-types';
+import { MIN_HEIGHT } from '@woocommerce/block-settings';
+import ProductControl from '@woocommerce/block-components/product-control';
+import ErrorPlaceholder from '@woocommerce/block-components/error-placeholder';
+import { withProduct } from '@woocommerce/block-hocs';
+import { Icon, star } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
  */
-import ProductControl from '../../components/product-control';
+import { dimRatioToClass, getBackgroundImageStyles } from './utils';
 import {
 	getImageSrcFromProduct,
 	getImageIdFromProduct,
 } from '../../utils/products';
 
 /**
- * Generate a style object given either a product object or URL to an image.
- *
- * @param {object|string} url A product object as returned from the API, or an image URL.
- * @return {object} A style object with a backgroundImage set (if a valid image is provided).
- */
-function backgroundImageStyles( url ) {
-	// If `url` is an object, it's actually a product.
-	if ( isObject( url ) ) {
-		url = getImageSrcFromProduct( url );
-	}
-	if ( url ) {
-		return { backgroundImage: `url(${ url })` };
-	}
-	return {};
-}
-
-/**
- * Convert the selected ratio to the correct background class.
- *
- * @param {number} ratio Selected opacity from 0 to 100.
- * @return {string} The class name, if applicable (not used for ratio 0 or 50).
- */
-function dimRatioToClass( ratio ) {
-	return ratio === 0 || ratio === 50 ?
-		null :
-		`has-background-dim-${ 10 * Math.round( ratio / 10 ) }`;
-}
-
-/**
  * Component to handle edit mode of "Featured Product".
  */
-class FeaturedProduct extends Component {
-	constructor() {
-		super( ...arguments );
-		this.state = {
-			product: false,
-			loaded: false,
-		};
+const FeaturedProduct = ( {
+	attributes,
+	debouncedSpeak,
+	error,
+	getProduct,
+	isLoading,
+	isSelected,
+	overlayColor,
+	product,
+	setAttributes,
+	setOverlayColor,
+	triggerUrlUpdate = () => void null,
+} ) => {
+	const renderApiError = () => (
+		<ErrorPlaceholder
+			className="wc-block-featured-product-error"
+			error={ error }
+			isLoading={ isLoading }
+			onRetry={ getProduct }
+		/>
+	);
 
-		this.debouncedGetProduct = debounce( this.getProduct.bind( this ), 200 );
-	}
-
-	componentDidMount() {
-		this.getProduct();
-	}
-
-	componentDidUpdate( prevProps ) {
-		if ( prevProps.attributes.productId !== this.props.attributes.productId ) {
-			this.debouncedGetProduct();
-		}
-	}
-
-	getProduct() {
-		const { productId } = this.props.attributes;
-		if ( ! productId ) {
-			// We've removed the selected product, or no product is selected yet.
-			this.setState( { product: false, loaded: true } );
-			return;
-		}
-		apiFetch( {
-			path: `/wc-pb/v3/products/${ productId }`,
-		} )
-			.then( ( product ) => {
-				this.setState( { product, loaded: true } );
-			} )
-			.catch( () => {
-				this.setState( { product: false, loaded: true } );
-			} );
-	}
-
-	getInspectorControls() {
-		const {
-			attributes,
-			setAttributes,
-			overlayColor,
-			setOverlayColor,
-		} = this.props;
-
-		return (
-			<InspectorControls key="inspector">
-				<PanelBody
-					title={ __( 'Product', 'woo-gutenberg-products-block' ) }
-					initialOpen={ false }
-				>
-					<ProductControl
-						selected={ attributes.productId || 0 }
-						onChange={ ( value = [] ) => {
-							const id = value[ 0 ] ? value[ 0 ].id : 0;
-							setAttributes( { productId: id, mediaId: 0, mediaSrc: '' } );
-						} }
-					/>
-				</PanelBody>
-				<PanelBody title={ __( 'Content', 'woo-gutenberg-products-block' ) }>
-					<ToggleControl
-						label={ __( 'Show description', 'woo-gutenberg-products-block' ) }
-						checked={ attributes.showDesc }
-						onChange={ () => setAttributes( { showDesc: ! attributes.showDesc } ) }
-					/>
-					<ToggleControl
-						label={ __( 'Show price', 'woo-gutenberg-products-block' ) }
-						checked={ attributes.showPrice }
-						onChange={ () => setAttributes( { showPrice: ! attributes.showPrice } ) }
-					/>
-				</PanelBody>
-				<PanelColorSettings
-					title={ __( 'Overlay', 'woo-gutenberg-products-block' ) }
-					colorSettings={ [
-						{
-							value: overlayColor.color,
-							onChange: setOverlayColor,
-							label: __( 'Overlay Color', 'woo-gutenberg-products-block' ),
-						},
-					] }
-				>
-					<RangeControl
-						label={ __( 'Background Opacity', 'woo-gutenberg-products-block' ) }
-						value={ attributes.dimRatio }
-						onChange={ ( ratio ) => setAttributes( { dimRatio: ratio } ) }
-						min={ 0 }
-						max={ 100 }
-						step={ 10 }
-					/>
-				</PanelColorSettings>
-			</InspectorControls>
-		);
-	}
-
-	renderEditMode() {
-		const { attributes, debouncedSpeak, setAttributes } = this.props;
+	const renderEditMode = () => {
 		const onDone = () => {
 			setAttributes( { editMode: false } );
 			debouncedSpeak(
@@ -180,175 +84,431 @@ class FeaturedProduct extends Component {
 		};
 
 		return (
-			<Placeholder
-				icon="star-filled"
-				label={ __( 'Featured Product', 'woo-gutenberg-products-block' ) }
-				className="wc-block-featured-product"
-			>
-				{ __(
-					'Visually highlight a product and encourage prompt action',
-					'woo-gutenberg-products-block'
-				) }
-				<div className="wc-block-handpicked-products__selection">
-					<ProductControl
-						selected={ attributes.productId || 0 }
-						onChange={ ( value = [] ) => {
-							const id = value[ 0 ] ? value[ 0 ].id : 0;
-							setAttributes( { productId: id, mediaId: 0, mediaSrc: '' } );
-						} }
-					/>
-					<Button isDefault onClick={ onDone }>
-						{ __( 'Done', 'woo-gutenberg-products-block' ) }
-					</Button>
-				</div>
-			</Placeholder>
+			<Fragment>
+				{ getBlockControls() }
+				<Placeholder
+					icon={ <Icon srcElement={ star } /> }
+					label={ __(
+						'Featured Product',
+						'woo-gutenberg-products-block'
+					) }
+					className="wc-block-featured-product"
+				>
+					{ __(
+						'Visually highlight a product or variation and encourage prompt action',
+						'woo-gutenberg-products-block'
+					) }
+					<div className="wc-block-featured-product__selection">
+						<ProductControl
+							selected={ attributes.productId || 0 }
+							showVariations
+							onChange={ ( value = [] ) => {
+								const id = value[ 0 ] ? value[ 0 ].id : 0;
+								setAttributes( {
+									productId: id,
+									mediaId: 0,
+									mediaSrc: '',
+								} );
+								triggerUrlUpdate();
+							} }
+						/>
+						<Button isPrimary onClick={ onDone }>
+							{ __( 'Done', 'woo-gutenberg-products-block' ) }
+						</Button>
+					</div>
+				</Placeholder>
+			</Fragment>
 		);
-	}
+	};
 
-	render() {
-		const { attributes, setAttributes, overlayColor } = this.props;
+	const getBlockControls = () => {
+		const { contentAlign, editMode } = attributes;
+		const mediaId = attributes.mediaId || getImageIdFromProduct( product );
+
+		return (
+			<BlockControls>
+				<AlignmentToolbar
+					value={ contentAlign }
+					onChange={ ( nextAlign ) => {
+						setAttributes( { contentAlign: nextAlign } );
+					} }
+				/>
+				<MediaUploadCheck>
+					<Toolbar>
+						<MediaUpload
+							onSelect={ ( media ) => {
+								setAttributes( {
+									mediaId: media.id,
+									mediaSrc: media.url,
+								} );
+							} }
+							allowedTypes={ [ 'image' ] }
+							value={ mediaId }
+							render={ ( { open } ) => (
+								<IconButton
+									className="components-toolbar__control"
+									label={ __( 'Edit media' ) }
+									icon="format-image"
+									onClick={ open }
+									disabled={ ! product }
+								/>
+							) }
+						/>
+					</Toolbar>
+				</MediaUploadCheck>
+				<Toolbar
+					controls={ [
+						{
+							icon: 'edit',
+							title: __( 'Edit' ),
+							onClick: () =>
+								setAttributes( { editMode: ! editMode } ),
+							isActive: editMode,
+						},
+					] }
+				/>
+			</BlockControls>
+		);
+	};
+
+	const getInspectorControls = () => {
+		const url = attributes.mediaSrc || getImageSrcFromProduct( product );
+		const { focalPoint = { x: 0.5, y: 0.5 } } = attributes;
+		// FocalPointPicker was introduced in Gutenberg 5.0 (WordPress 5.2),
+		// so we need to check if it exists before using it.
+		const focalPointPickerExists = typeof FocalPointPicker === 'function';
+
+		return (
+			<InspectorControls key="inspector">
+				<PanelBody
+					title={ __( 'Content', 'woo-gutenberg-products-block' ) }
+				>
+					<ToggleControl
+						label={ __(
+							'Show description',
+							'woo-gutenberg-products-block'
+						) }
+						checked={ attributes.showDesc }
+						onChange={
+							// prettier-ignore
+							() => setAttributes( { showDesc: ! attributes.showDesc } )
+						}
+					/>
+					<ToggleControl
+						label={ __(
+							'Show price',
+							'woo-gutenberg-products-block'
+						) }
+						checked={ attributes.showPrice }
+						onChange={
+							// prettier-ignore
+							() => setAttributes( { showPrice: ! attributes.showPrice } )
+						}
+					/>
+				</PanelBody>
+				<PanelColorSettings
+					title={ __( 'Overlay', 'woo-gutenberg-products-block' ) }
+					colorSettings={ [
+						{
+							value: overlayColor.color,
+							onChange: setOverlayColor,
+							label: __(
+								'Overlay Color',
+								'woo-gutenberg-products-block'
+							),
+						},
+					] }
+				>
+					{ !! url && (
+						<Fragment>
+							<RangeControl
+								label={ __(
+									'Background Opacity',
+									'woo-gutenberg-products-block'
+								) }
+								value={ attributes.dimRatio }
+								onChange={ ( ratio ) =>
+									setAttributes( { dimRatio: ratio } )
+								}
+								min={ 0 }
+								max={ 100 }
+								step={ 10 }
+							/>
+							{ focalPointPickerExists && (
+								<FocalPointPicker
+									label={ __( 'Focal Point Picker' ) }
+									url={ url }
+									value={ focalPoint }
+									onChange={ ( value ) =>
+										setAttributes( { focalPoint: value } )
+									}
+								/>
+							) }
+						</Fragment>
+					) }
+				</PanelColorSettings>
+			</InspectorControls>
+		);
+	};
+
+	const renderProduct = () => {
 		const {
+			className,
 			contentAlign,
 			dimRatio,
-			editMode,
-			linkText,
+			focalPoint,
+			height,
 			showDesc,
 			showPrice,
 		} = attributes;
-		const { loaded, product } = this.state;
 		const classes = classnames(
 			'wc-block-featured-product',
 			{
-				'is-loading': ! product && ! loaded,
-				'is-not-found': ! product && loaded,
+				'is-selected': isSelected && attributes.productId !== 'preview',
+				'is-loading': ! product && isLoading,
+				'is-not-found': ! product && ! isLoading,
 				'has-background-dim': dimRatio !== 0,
 			},
 			dimRatioToClass( dimRatio ),
-			contentAlign !== 'center' && `has-${ contentAlign }-content`
+			contentAlign !== 'center' && `has-${ contentAlign }-content`,
+			className
 		);
-		const mediaId = attributes.mediaId || getImageIdFromProduct( product );
 
-		const style = !! product ?
-			backgroundImageStyles( attributes.mediaSrc || product ) :
-			{};
+		const style = getBackgroundImageStyles(
+			attributes.mediaSrc || product
+		);
+
 		if ( overlayColor.color ) {
 			style.backgroundColor = overlayColor.color;
 		}
+		if ( focalPoint ) {
+			const bgPosX = focalPoint.x * 100;
+			const bgPosY = focalPoint.y * 100;
+			style.backgroundPosition = `${ bgPosX }% ${ bgPosY }%`;
+		}
+
+		const onResizeStop = ( event, direction, elt ) => {
+			setAttributes( { height: parseInt( elt.style.height, 10 ) } );
+		};
 
 		return (
-			<Fragment>
-				<BlockControls>
-					<AlignmentToolbar
-						value={ contentAlign }
-						onChange={ ( nextAlign ) => {
-							setAttributes( { contentAlign: nextAlign } );
+			<ResizableBox
+				className={ classes }
+				size={ { height } }
+				minHeight={ MIN_HEIGHT }
+				enable={ { bottom: true } }
+				onResizeStop={ onResizeStop }
+				style={ style }
+			>
+				<div className="wc-block-featured-product__wrapper">
+					<h2
+						className="wc-block-featured-product__title"
+						dangerouslySetInnerHTML={ {
+							__html: product.name,
 						} }
 					/>
-					<Toolbar
-						controls={ [
-							{
-								icon: 'edit',
-								title: __( 'Edit' ),
-								onClick: () => setAttributes( { editMode: ! editMode } ),
-								isActive: editMode,
-							},
-						] }
-					/>
-					<MediaUploadCheck>
-						<Toolbar>
-							<MediaUpload
-								onSelect={ ( media ) => {
-									setAttributes( { mediaId: media.id, mediaSrc: media.url } );
-								} }
-								allowedTypes={ [ 'image' ] }
-								value={ mediaId }
-								render={ ( { open } ) => (
-									<IconButton
-										className="components-toolbar__control"
-										label={ __( 'Edit media' ) }
-										icon="format-image"
-										onClick={ open }
-									/>
-								) }
-							/>
-						</Toolbar>
-					</MediaUploadCheck>
-				</BlockControls>
-				{ ! attributes.editMode && this.getInspectorControls() }
-				{ editMode ? (
-					this.renderEditMode()
-				) : (
-					<Fragment>
-						{ !! product ? (
-							<div className={ classes } style={ style }>
-								<h2 className="wc-block-featured-product__title">
-									{ product.name }
-								</h2>
-								{ showDesc && (
-									<div
-										className="wc-block-featured-product__description"
-										dangerouslySetInnerHTML={ {
-											__html: product.short_description,
-										} }
-									/>
-								) }
-								{ showPrice && (
-									<div
-										className="wc-block-featured-product__price"
-										dangerouslySetInnerHTML={ { __html: product.price_html } }
-									/>
-								) }
-								<div className="wc-block-featured-product__link wp-block-button">
-									<RichText
-										value={ linkText }
-										onChange={ ( value ) => setAttributes( { linkText: value } ) }
-										formattingControls={ [ 'bold', 'italic', 'strikethrough' ] }
-										className="wp-block-button__link"
-										keepPlaceholderOnFocus
-									/>
-								</div>
-							</div>
-						) : (
-							<Placeholder
-								className="wc-block-featured-product"
-								icon="star-filled"
-								label={ __( 'Featured Product', 'woo-gutenberg-products-block' ) }
-							>
-								{ ! loaded ? (
-									<Spinner />
-								) : (
-									__( 'No product is selected.', 'woo-gutenberg-products-block' )
-								) }
-							</Placeholder>
-						) }
-					</Fragment>
-				) }
-			</Fragment>
+					{ ! isEmpty( product.variation ) && (
+						<h3
+							className="wc-block-featured-product__variation"
+							dangerouslySetInnerHTML={ {
+								__html: product.variation,
+							} }
+						/>
+					) }
+					{ showDesc && (
+						<div
+							className="wc-block-featured-product__description"
+							dangerouslySetInnerHTML={ {
+								__html: product.short_description,
+							} }
+						/>
+					) }
+					{ showPrice && (
+						<div
+							className="wc-block-featured-product__price"
+							dangerouslySetInnerHTML={ {
+								__html: product.price_html,
+							} }
+						/>
+					) }
+					<div className="wc-block-featured-product__link">
+						{ renderButton() }
+					</div>
+				</div>
+			</ResizableBox>
 		);
+	};
+
+	const renderButton = () => {
+		const buttonClasses = classnames(
+			'wp-block-button__link',
+			'is-style-fill'
+		);
+		const buttonStyle = {
+			backgroundColor: 'vivid-green-cyan',
+			borderRadius: '5px',
+		};
+		const wrapperStyle = {
+			width: '100%',
+		};
+		return attributes.productId === 'preview' ? (
+			<div className="wp-block-button aligncenter" style={ wrapperStyle }>
+				<RichText.Content
+					tagName="a"
+					className={ buttonClasses }
+					href={ product.permalink }
+					title={ attributes.linkText }
+					style={ buttonStyle }
+					value={ attributes.linkText }
+					target={ product.permalink }
+				/>
+			</div>
+		) : (
+			<InnerBlocks
+				template={ [
+					[
+						'core/button',
+						{
+							text: __(
+								'Shop now',
+								'woo-gutenberg-products-block'
+							),
+							url: product.permalink,
+							align: 'center',
+						},
+					],
+				] }
+				templateLock="all"
+			/>
+		);
+	};
+
+	const renderNoProduct = () => (
+		<Placeholder
+			className="wc-block-featured-product"
+			icon={ <Icon srcElement={ star } /> }
+			label={ __( 'Featured Product', 'woo-gutenberg-products-block' ) }
+		>
+			{ isLoading ? (
+				<Spinner />
+			) : (
+				__( 'No product is selected.', 'woo-gutenberg-products-block' )
+			) }
+		</Placeholder>
+	);
+
+	const { editMode } = attributes;
+
+	if ( error ) {
+		return renderApiError();
 	}
-}
+
+	if ( editMode ) {
+		return renderEditMode();
+	}
+
+	return (
+		<Fragment>
+			{ getBlockControls() }
+			{ getInspectorControls() }
+			{ product ? renderProduct() : renderNoProduct() }
+		</Fragment>
+	);
+};
 
 FeaturedProduct.propTypes = {
 	/**
-	 * The attributes for this block
+	 * The attributes for this block.
 	 */
 	attributes: PropTypes.object.isRequired,
+	/**
+	 * Whether this block is currently active.
+	 */
+	isSelected: PropTypes.bool.isRequired,
 	/**
 	 * The register block name.
 	 */
 	name: PropTypes.string.isRequired,
 	/**
-	 * A callback to update attributes
+	 * A callback to update attributes.
 	 */
 	setAttributes: PropTypes.func.isRequired,
+	// from withProduct
+	error: PropTypes.object,
+	getProduct: PropTypes.func,
+	isLoading: PropTypes.bool,
+	product: PropTypes.shape( {
+		name: PropTypes.node,
+		variation: PropTypes.node,
+		description: PropTypes.node,
+		price_html: PropTypes.node,
+		permalink: PropTypes.string,
+	} ),
 	// from withColors
 	overlayColor: PropTypes.object,
 	setOverlayColor: PropTypes.func.isRequired,
 	// from withSpokenMessages
 	debouncedSpeak: PropTypes.func.isRequired,
+	triggerUrlUpdate: PropTypes.func,
 };
 
 export default compose( [
+	withProduct,
 	withColors( { overlayColor: 'background-color' } ),
 	withSpokenMessages,
+	withSelect( ( select, { clientId }, { dispatch } ) => {
+		const Block = select( 'core/block-editor' ).getBlock( clientId );
+		const buttonBlockId = Block?.innerBlocks[ 0 ]?.clientId || '';
+		const currentButtonAttributes =
+			Block?.innerBlocks[ 0 ]?.attributes || {};
+		const updateBlockAttributes = ( attributes ) => {
+			if ( buttonBlockId ) {
+				dispatch( 'core/block-editor' ).updateBlockAttributes(
+					buttonBlockId,
+					attributes
+				);
+			}
+		};
+		return { updateBlockAttributes, currentButtonAttributes };
+	} ),
+	createHigherOrderComponent( ( ProductComponent ) => {
+		class WrappedComponent extends Component {
+			state = {
+				doUrlUpdate: false,
+			};
+			componentDidUpdate() {
+				const {
+					attributes,
+					updateBlockAttributes,
+					currentButtonAttributes,
+					product,
+				} = this.props;
+				if (
+					this.state.doUrlUpdate &&
+					! attributes.editMode &&
+					product?.permalink &&
+					currentButtonAttributes?.url &&
+					product.permalink !== currentButtonAttributes.url
+				) {
+					updateBlockAttributes( {
+						...currentButtonAttributes,
+						url: product.permalink,
+					} );
+					this.setState( { doUrlUpdate: false } );
+				}
+			}
+			triggerUrlUpdate = () => {
+				this.setState( { doUrlUpdate: true } );
+			};
+			render() {
+				return (
+					<ProductComponent
+						triggerUrlUpdate={ this.triggerUrlUpdate }
+						{ ...this.props }
+					/>
+				);
+			}
+		}
+		return WrappedComponent;
+	}, 'withUpdateButtonAttributes' ),
 ] )( FeaturedProduct );

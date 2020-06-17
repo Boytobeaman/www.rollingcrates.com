@@ -17,6 +17,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<?php do_action( 'wp_body_open' ); ?>
 
 	<div id="site-loader">
 		<div class="site-loader-inner">
@@ -74,14 +75,18 @@
 						<div class="socialgroup">
 							<?php business_consultr_get_menu( 'social' ); ?>
 						</div>
-						<span class="search-icon">
-							<a href="#">
-								<span class="kfi kfi-search" aria-hidden="true"></span>
-							</a>
-							<div id="search-form">
-								<?php get_search_form(); ?>
-							</div><!-- /#search-form -->
-						</span>
+						<?php if( !business_consultr_get_option( 'disable_search_icon' ) ):?>
+								<span class="search-icon">
+									<a href="#">
+										<button aria-expanded="false">
+											<span class="kfi kfi-search" aria-hidden="true"></span>
+										</button>
+									</a>
+									<div id="search-form">
+										<?php get_search_form(); ?>
+									</div><!-- /#search-form -->
+								</span>
+						<?php endif; ?>
 						<?php if( class_exists( 'WooCommerce' ) ): ?>
 							<span class="cart-icon">
 								<a href="<?php echo esc_url( wc_get_cart_url() ); ?>">
@@ -112,7 +117,7 @@
 					<div class="visible-md visible-lg <?php echo $class; ?>" id="primary-nav-container">
 						<div class="wrap-nav main-navigation">
 							<div id="navigation" class="hidden-xs hidden-sm">
-							    <nav class="nav">
+							    <nav id="site-navigation" class="main-navigation" role="navigation" aria-label="<?php esc_attr_e( 'Primary Menu', 'business-consultr' ); ?>">
 									<?php echo business_consultr_get_menu( 'primary' ); ?>
 							    </nav>
 							</div>
@@ -137,3 +142,5 @@
 				</div>
 			</div>
 		</header><!-- #masthead -->
+		<div id="content" class="wrapper site-main">
+

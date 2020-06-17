@@ -10,11 +10,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 	protected $isTemplateEdit = false; // indicates whether controlled is deligated by manage imports controller	
 
 	protected function init() {
-		parent::init();							
-		
-		error_reporting(0);
-		
-		//PMXI_Plugin::$session = PMXI_Session::get_instance();			
+		parent::init();
 
 		if ('PMXI_Admin_Manage' == PMXI_Plugin::getInstance()->getAdminCurrentScreen()->base) { // prereqisites are not checked when flow control is deligated
 			$id = $this->input->get('id');
@@ -53,7 +49,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 	 */
 	protected function _step_ready($action) {		
 		// step #1: xml selction - has no prerequisites
-		if ('index' == $action) return true;		
+		if ('index' == $action) return true;
 		
 		// step #2: element selection
 		$this->data['dom'] = $dom = new DOMDocument('1.0', PMXI_Plugin::$session->encoding);
@@ -142,32 +138,22 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			$DefaultOptions['custom_type'] = $parent_import_record->options['custom_type'];
 		}
 
-		if ($id) { // update requested but corresponding import is not found
-			if ($import->getById($id)->isEmpty()){				
-
-				if (!empty($_GET['deligate']) and $_GET['deligate'] == 'wpallexport'){
-				
+		if ( $id ) { // update requested but corresponding import is not found
+			if ( $import->getById($id)->isEmpty() ) {
+				if ( ! empty($_GET['deligate']) and $_GET['deligate'] == 'wpallexport' ) {
 					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('The import associated with this export has been deleted.', 'wp_all_import_plugin')), 'updated' => urlencode(__('Please re-run your export by clicking Run Export on the All Export -> Manage Exports page. Then try your import again.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
-
-				}
-				else{
-
+				} else {
 					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('This import has been deleted.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
 				}
-
-			}
-			else{
+			} else {
 				$DefaultOptions['custom_type'] = $import->options['custom_type'];	
 			}
 		}			
 
-		if ( ! in_array($action, array('index')))
-		{
+		if ( ! in_array($action, array('index'))) {
 			PMXI_Plugin::$session->clean_session();				
-		}		 
-		else
-		{			
-			$DefaultOptions = (PMXI_Plugin::$session->has_session() ? PMXI_Plugin::$session->first_step : array()) + $DefaultOptions;											
+		} else {
+			$DefaultOptions = (PMXI_Plugin::$session->has_session() && !empty(PMXI_Plugin::$session->first_step) ? PMXI_Plugin::$session->first_step : array()) + $DefaultOptions;
 		}
 		
 		$this->data['post'] = $post = $this->input->post( $DefaultOptions );					
@@ -254,8 +240,11 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 						$this->errors->add('form-validation', __('Certain columns are required to be present in your file to enable it to be re-imported with WP All Import. These columns are missing. Re-export your file using WP All Export, and don\'t delete any of the columns when editing it. Then, re-import will work correctly.', 'wp_all_import_plugin'));
 					}
 					elseif($importRecord->options['custom_type'] == 'import_users' && ! class_exists('PMUI_Plugin')){
-						$this->errors->add('form-validation', __('<p>The import template you are using requires User Import Add-On.</p><a href="http://www.wpallimport.com/add-ons/user-import/?utm_source=wordpress.org&utm_medium=wpai-import-template&utm_campaign=free+wp+all+export+plugin" target="_blank">Purchase the User Import Add-On</a>', 'wp_all_import_plugin'));
+						$this->errors->add('form-validation', __('<p>The import template you are using requires the User Add-On.</p><a href="https://www.wpallimport.com/checkout/?edd_action=purchase_collection&taxonomy=download_category&terms=40&utm_source=import-plugin-free&utm_medium=upgrade-notice&utm_campaign=import-users" target="_blank">Purchase the User Add-On</a>', 'wp_all_import_plugin'));
 					}
+                    elseif($importRecord->options['custom_type'] == 'shop_customer' && ! class_exists('PMUI_Plugin')){
+                        $this->errors->add('form-validation', __('<p>The import template you are using requires the User Add-On.</p><a href="https://www.wpallimport.com/checkout/?edd_action=purchase_collection&taxonomy=download_category&terms=40&utm_source=import-plugin-free&utm_medium=upgrade-notice&utm_campaign=import-users" target="_blank">Purchase the User Add-On</a>', 'wp_all_import_plugin'));
+                    }
 					
 					break;
 				
@@ -316,8 +305,14 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 									$dxpath = new DOMXPath($dom);
 									
 									if (($elements = @$dxpath->query($xpath)) and $elements->length){										
-										$chunks += $elements->length;										
-										unset($dom, $dxpath, $elements);		
+
+										if ( empty($chunks) ) {
+											$chunks = 0;
+										}
+
+										$chunks += $elements->length;
+
+										unset($dom, $dxpath, $elements);
 
 									}
 							    }
@@ -1088,7 +1083,13 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 							$featured_image = $post[$get['slug'] . 'download_featured_image'];
 							break;
 					}
-					list($this->data['featured_images']) = XmlImportParser::factory($xml, $xpath, $featured_image, $file)->parse(); unlink($file);								
+
+					if (empty($featured_image)){
+                        $this->data['featured_images'] = '';
+                    }
+					else{
+                        list($this->data['featured_images']) = XmlImportParser::factory($xml, $xpath, $featured_image, $file)->parse(); unlink($file);
+                    }
 				}							
 				
 			} catch (XmlImportException $e) {
@@ -1468,21 +1469,21 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			if (!empty($post['title'])) {			
 				$this->_validate_template($post['title'], 'Post title');
 			}
-			elseif ($post['custom_type'] != 'shop_order'){
+			elseif ( ! in_array($post['custom_type'], array('shop_order', 'import_users', 'shop_customer')) ){
 				$this->warnings->add('1', __('<strong>Warning:</strong> your title is blank.', 'wp_all_import_plugin'));
 			}
 
 			if (!empty($post['content'])) {				
 				$this->_validate_template($post['content'], 'Post content');
 			}
-			elseif ($post['custom_type'] != 'shop_order'){
+			elseif ( ! in_array($post['custom_type'], array('shop_order', 'import_users', 'shop_customer')) ){
 				$this->warnings->add('2', __('<strong>Warning:</strong> your content is blank.', 'wp_all_import_plugin'));
 			}
 			
 			if ( ! $this->errors->get_error_codes()) {				
 
 				// Attributes fields logic
-				$post = apply_filters('pmxi_save_options', $post);					
+                $post = apply_filters('pmxi_save_options', $post, $this->isWizard);
 				
 				// validate post excerpt
 				if ( ! empty($post['post_excerpt'])) $this->_validate_template($post['post_excerpt'], __('Excerpt', 'wp_all_import_plugin'));
@@ -1602,7 +1603,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		global $wpdb;
 
-		if ( ! in_array($post['custom_type'], array('import_users')) ){			
+		if ( ! in_array($post['custom_type'], array('import_users', 'shop_customer')) ){
 
 			// Get all meta keys for requested post type
 			$this->data['meta_keys'] = array();		
@@ -1784,12 +1785,14 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 						} elseif (isset($mtch[3]) and intval($mtch[3]) > PMXI_Plugin::$session->count) {
 							$this->errors->add('form-validation', __('One of the numbers in `Import only specified records` value exceeds record quantity in XML file', 'wp_all_import_plugin'));
 							break;
-						}
+						} elseif (preg_match('%^(\d+)-(\d+)$%', $chank, $mtch) && intval($mtch[1]) > intval($mtch[2])) {
+                            $this->errors->add('form-validation', __('Wrong format of `Import only specified records` value', 'wp_all_import_plugin'));
+                        }
 					}
 				}
 			}
 			if ('manual' != $post['duplicate_matching'] and '' == $post['unique_key']) {
-				$this->errors->add('form-validation', __('Expression for `Post Unique Key` must be set, use the same expression as specified for post title if you are not sure what to put there', 'wp_all_import_plugin'));
+				$this->errors->add('form-validation', __('Unique ID is currently empty and must be set. If you are not sure what to use as a Unique ID, click Auto-detect.', 'wp_all_import_plugin'));
 			} elseif ('manual' != $post['duplicate_matching']) {
 				$this->_validate_template($post['unique_key'], __('Post Unique Key', 'wp_all_import_plugin'));
 			}			
@@ -1950,7 +1953,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			if ( ! $this->errors->get_error_codes()) { // no validation errors found	
 
 				// Attributes fields logic
-				$post = apply_filters('pmxi_save_options', $post);					
+				$post = apply_filters('pmxi_save_options', $post, $this->isWizard);
 				
 				if ($this->isWizard) {
 
@@ -2086,7 +2089,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		$this->data['existing_meta_keys'] = array();	
 		
-		if ( ! in_array($post['custom_type'], array('import_users'))){
+		if ( ! in_array($post['custom_type'], array('import_users', 'shop_customer'))){
 
 			global $wpdb;
 
@@ -2223,7 +2226,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 			// unlink previous logs
 			$by = array();
-			$by[] = array(array('import_id' => $import->id, 'type NOT LIKE' => 'trigger'), 'AND');
+			$by[] = array(array('import_id' => $import->id), 'AND');
 			$historyLogs = new PMXI_History_List();
 			$historyLogs->setColumns('id', 'import_id', 'type', 'date')->getBy($by, 'id ASC');
 			if ($historyLogs->count() and $historyLogs->count() >= $log_storage ){
@@ -2241,7 +2244,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 				'import_id' => $import->id,
 				'date' => date('Y-m-d H:i:s'),
 				'type' => ( PMXI_Plugin::$session->action != 'continue' ) ? 'manual' : 'continue',				
-				'summary' => sprintf(__("%d %ss created %d updated %d deleted %d skipped", "pmxi_plugin"), $import->created, $custom_type->labels->singular_name, $import->updated, $import->deleted, $import->skipped)
+				'summary' => sprintf(__("%d %s created %d updated %d deleted %d skipped", "wp_all_import_plugin"), $import->created, ( ($import->created == 1) ? $custom_type->labels->singular_name : $custom_type->labels->name ), $import->updated, $import->deleted, $import->skipped)
 			))->save();	
 
 			PMXI_Plugin::$session->set('history_id', $history_log->id);			
@@ -2387,7 +2390,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		if ($ajax_processing)
 		{			
-			$logger = function($m) {printf("<div class='progress-msg'>[%s] $m</div>\n", date("H:i:s"));flush();};
+			$logger = function($m) {echo "<div class='progress-msg'>[". date("H:i:s") ."] $m</div>\n";flush();};
 		}
 		else
 		{
@@ -2825,8 +2828,15 @@ COMPLETE;
 
             $keys_black_list = array('programurl');
 
-            if (empty(PMXI_Plugin::$session->deligate))
+			if ( empty(PMXI_Plugin::$session->deligate) ) {
+				if (PMXI_Plugin::$session->options['custom_type'] == 'import_users') {
+					$uniqueKey = PMXI_Plugin::$session->options['pmui']['login'];
+				} elseif (PMXI_Plugin::$session->options['custom_type'] == 'shop_customer') {
+					$uniqueKey = PMXI_Plugin::$session->options['pmsci_customer']['login'];
+				} else {
                 $uniqueKey = PMXI_Plugin::$session->options['title'];
+				}
+			}
 
             // auto searching ID element
             if (!empty($this->data['dom']) and empty(PMXI_Plugin::$session->deligate)) {

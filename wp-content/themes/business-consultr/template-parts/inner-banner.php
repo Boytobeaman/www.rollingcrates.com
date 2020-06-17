@@ -19,9 +19,13 @@
 			</div>
 		</header>
 	</div>
-	<?php 
-		if( !is_front_page()){
-			business_consultr_breadcrumb();
-		}
-	?>
+</section>
+<section class="wrapper breadcrumb-wrap">
+	<div class="container">
+		<?php 
+			if( !is_front_page()){
+				business_consultr_breadcrumb();
+			}
+		?>
+	</div>
 </section>

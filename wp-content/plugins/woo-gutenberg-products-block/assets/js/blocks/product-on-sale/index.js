@@ -2,28 +2,34 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import Gridicon from 'gridicons';
-import { registerBlockType } from '@wordpress/blocks';
-import { RawHTML } from '@wordpress/element';
-
+import { createBlock, registerBlockType } from '@wordpress/blocks';
+import { without } from 'lodash';
+import { Icon, tag } from '@woocommerce/icons';
 /**
  * Internal dependencies
  */
 import Block from './block';
-import getShortcode from '../../utils/get-shortcode';
-import sharedAttributes from '../../utils/shared-attributes';
+import './editor.scss';
+import { deprecatedConvertToShortcode } from '../../utils/deprecations';
+import sharedAttributes, {
+	sharedAttributeBlockTypes,
+} from '../../utils/shared-attributes';
 
 registerBlockType( 'woocommerce/product-on-sale', {
 	title: __( 'On Sale Products', 'woo-gutenberg-products-block' ),
-	icon: <Gridicon icon="tag" />,
+	icon: {
+		src: <Icon srcElement={ tag } />,
+		foreground: '#96588a',
+	},
 	category: 'woocommerce',
 	keywords: [ __( 'WooCommerce', 'woo-gutenberg-products-block' ) ],
 	description: __(
-		'Display a grid of on sale products.',
+		'Display a grid of products currently on sale.',
 		'woo-gutenberg-products-block'
 	),
 	supports: {
 		align: [ 'wide', 'full' ],
+		html: false,
 	},
 	attributes: {
 		...sharedAttributes,
@@ -36,27 +42,49 @@ registerBlockType( 'woocommerce/product-on-sale', {
 			default: 'date',
 		},
 	},
+	example: {
+		attributes: {
+			isPreview: true,
+		},
+	},
+	transforms: {
+		from: [
+			{
+				type: 'block',
+				blocks: without(
+					sharedAttributeBlockTypes,
+					'woocommerce/product-on-sale'
+				),
+				transform: ( attributes ) =>
+					createBlock( 'woocommerce/product-on-sale', attributes ),
+			},
+		],
+	},
+
+	deprecated: [
+		{
+			// Deprecate shortcode save method in favor of dynamic rendering.
+			attributes: {
+				...sharedAttributes,
+				orderby: {
+					type: 'string',
+					default: 'date',
+				},
+			},
+			save: deprecatedConvertToShortcode( 'woocommerce/product-on-sale' ),
+		},
+	],
 
 	/**
 	 * Renders and manages the block.
+	 *
+	 * @param {Object} props Props to pass to block.
 	 */
 	edit( props ) {
 		return <Block { ...props } />;
 	},
 
-	/**
-	 * Save the block content in the post content. Block content is saved as a products shortcode.
-	 *
-	 * @return string
-	 */
-	save( props ) {
-		const {
-			align,
-		} = props.attributes; /* eslint-disable-line react/prop-types */
-		return (
-			<RawHTML className={ align ? `align${ align }` : '' }>
-				{ getShortcode( props, 'woocommerce/product-on-sale' ) }
-			</RawHTML>
-		);
+	save() {
+		return null;
 	},
 } );

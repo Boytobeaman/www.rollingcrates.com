@@ -72,12 +72,6 @@ function business_consultr_register_required_plugins() {
 		),
 
 		array(
-			'name'      => esc_html__( 'JetPack', 'business-consultr' ),
-			'slug'      => 'jetpack',
-			'required'  => false,
-		),
-
-		array(
 			'name'      => esc_html__( 'One Click Demo Import', 'business-consultr' ),
 			'slug'      => 'one-click-demo-import',
 			'required'  => false,

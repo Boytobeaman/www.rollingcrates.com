@@ -6,6 +6,10 @@
  * @since 1.0.0
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! class_exists( 'Astra_Ext_Transparent_Header_Loader' ) ) {
 
 	/**
@@ -27,7 +31,7 @@ if ( ! class_exists( 'Astra_Ext_Transparent_Header_Loader' ) ) {
 		 */
 		public static function get_instance() {
 			if ( ! isset( self::$instance ) ) {
-				self::$instance = new self;
+				self::$instance = new self();
 			}
 			return self::$instance;
 		}
@@ -49,23 +53,24 @@ if ( ! class_exists( 'Astra_Ext_Transparent_Header_Loader' ) ) {
 		 * @param  array $defaults  Astra options default value array.
 		 * @return array
 		 */
-		function theme_defaults( $defaults ) {
+		public function theme_defaults( $defaults ) {
 
 			// Header - Transparent.
-			$defaults['transparent-header-logo']            = '';
-			$defaults['transparent-header-retina-logo']     = '';
-			$defaults['different-transparent-logo']         = 0;
-			$defaults['different-transparent-retina-logo']  = 0;
-			$defaults['transparent-header-logo-width']      = array(
+			$defaults['transparent-header-logo']                       = '';
+			$defaults['transparent-header-retina-logo']                = '';
+			$defaults['different-transparent-logo']                    = 0;
+			$defaults['different-transparent-retina-logo']             = 0;
+			$defaults['transparent-header-logo-width']                 = array(
 				'desktop' => '',
 				'tablet'  => '',
 				'mobile'  => '',
 			);
-			$defaults['transparent-header-enable']          = 0;
-			$defaults['transparent-header-disable-archive'] = 1;
-			$defaults['transparent-header-on-devices']      = 'both';
-			$defaults['transparent-header-main-sep']        = 0;
-			$defaults['transparent-header-main-sep-color']  = '';
+			$defaults['transparent-header-enable']                     = 0;
+			$defaults['transparent-header-disable-archive']            = 1;
+			$defaults['transparent-header-disable-latest-posts-index'] = 1;
+			$defaults['transparent-header-on-devices']                 = 'both';
+			$defaults['transparent-header-main-sep']                   = 0;
+			$defaults['transparent-header-main-sep-color']             = '';
 
 			/**
 			* Transparent Header
@@ -161,7 +166,7 @@ if ( ! class_exists( 'Astra_Ext_Transparent_Header_Loader' ) ) {
 		 *
 		 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
 		 */
-		function customize_register( $wp_customize ) {
+		public function customize_register( $wp_customize ) {
 
 			/**
 			 * Register Panel & Sections
@@ -180,8 +185,14 @@ if ( ! class_exists( 'Astra_Ext_Transparent_Header_Loader' ) ) {
 		/**
 		 * Customizer Preview
 		 */
-		function preview_scripts() {
-			wp_enqueue_script( 'astra-transparent-header-customizer-preview-js', ASTRA_THEME_TRANSPARENT_HEADER_URI . 'assets/js/unminified/customizer-preview.js', array( 'customize-preview', 'astra-customizer-preview-js' ), ASTRA_THEME_VERSION, true );
+		public function preview_scripts() {
+			/**
+			 * Load unminified if SCRIPT_DEBUG is true.
+			 */
+			/* Directory and Extension */
+			$dir_name    = ( SCRIPT_DEBUG ) ? 'unminified' : 'minified';
+			$file_prefix = ( SCRIPT_DEBUG ) ? '' : '.min';
+			wp_enqueue_script( 'astra-transparent-header-customizer-preview-js', ASTRA_THEME_TRANSPARENT_HEADER_URI . 'assets/js/' . $dir_name . '/customizer-preview' . $file_prefix . '.js', array( 'customize-preview', 'astra-customizer-preview-js' ), ASTRA_THEME_VERSION, true );
 		}
 	}
 }

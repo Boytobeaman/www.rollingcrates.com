@@ -53,26 +53,6 @@ function business_consultr_default_styles(){
 		    opacity: 0;
 		    transition: opacity 0.5s;
 		}
-
-		.main-navigation {
-			display: table;
-			height: 100%;
-		}
-
-		.main-navigation #navigation {
-			display: table-cell;
-			vertical-align: middle;
-		}
-
-		.site-header .header-bottom-right {
-			height: 100% !important;
-			display: table;
-			margin-top: 0px;
-		}
-
-		.site-header .header-bottom-right > span {
-			display: table-cell;
-		}
 		
 		#primary-nav-container{
 			padding-top: <?php echo esc_attr( $menu_padding_top ) . 'px'; ?>;
@@ -96,17 +76,6 @@ function business_consultr_default_styles(){
 			}
 		<?php endif; ?>
 
-		<?php if( is_admin_bar_showing() ): ?>
-			.site-header {
-				padding-top: 47px !important;
-			}
-			@media screen and (max-width: 782px){
-				.site-header {
-					padding-top: 61px !important;
-				}
-			}
-		<?php endif; ?>
-
 		<?php if( !$slider_control ): ?>
 			.block-slider .controls, .block-slider .owl-pager{
 				opacity: 0;
@@ -118,11 +87,11 @@ function business_consultr_default_styles(){
 				position: relative;
 				top: 0 !important;
 			}
-			.block-slider .banner-overlay {
-				padding-top: 175px;
+			.block-slider{
+				margin-top: 0 !important;
 			}
-			.wrap-inner-banner .page-header {
-				margin-top: 100px;
+			.wrap-inner-banner{
+				margin-top: 0 !important;
 			}
 		<?php endif; ?>
 

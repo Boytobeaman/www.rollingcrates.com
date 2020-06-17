@@ -73,6 +73,7 @@ function business_consultr_default_options( $options ){
 		'header_button'                  => esc_html__( 'Quick Quote', 'business-consultr' ),
 		'header_button_link'             => esc_html__( '#', 'business-consultr' ),
 		'disable_top_header'             => false,
+		'disable_search_icon'            => false,
 		'disable_header_button'          => false,
 		'disable_fixed_header'           => false,
 		# Blog

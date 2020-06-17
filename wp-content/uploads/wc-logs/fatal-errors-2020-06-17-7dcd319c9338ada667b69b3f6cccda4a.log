@@ -1,0 +1,99 @@
+2020-06-17T15:14:23+00:00 CRITICAL Uncaught Error: Call to undefined function astra_update_option() in /data/wwwroot/www.rollingcrates.com/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php:314
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php(157): Astra_Theme_Background_Updater::update_db_version()
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(286): Astra_Theme_Background_Updater->install_actions('')
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(NULL, Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(453): WP_Hook->do_action(Array)
+#4 /data/wwwroot/www.rollingcrates.com/wp-admin/admin-ajax.php(44): do_action('admin_init')
+#5 {main}
+  thrown in /data/wwwroot/www.rollingcrates.com/wp-content/themes/astra/inc/theme-update/class-astra-theme-background-updater.php on line 314
+
+2020-06-17T15:19:40+00:00 CRITICAL Uncaught Error: Class 'WPMailSMTP\AM_Notification' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wp-mail-smtp/src/Core.php:202
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(286): WPMailSMTP\Core->init_notifications('')
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(Object(WPMailSMTP\MailCatcher), Array)
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(453): WP_Hook->do_action(Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-settings.php(344): do_action('plugins_loaded')
+#4 /data/wwwroot/www.rollingcrates.com/wp-config.php(89): require_once('/data/wwwroot/w...')
+#5 /data/wwwroot/www.rollingcrates.com/wp-load.php(37): require_once('/data/wwwroot/w...')
+#6 /data/wwwroot/www.rollingcrates.com/wp-admin/admin-ajax.php(22): require_once('/data/wwwroot/w...')
+#7 {main}
+  thrown in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wp-mail-smtp/src/Core.php on line 202
+
+2020-06-17T15:19:46+00:00 CRITICAL Uncaught Error: Class 'WPMailSMTP\AM_Notification' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wp-mail-smtp/src/Core.php:202
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(286): WPMailSMTP\Core->init_notifications('')
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(Object(WPMailSMTP\MailCatcher), Array)
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(453): WP_Hook->do_action(Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-settings.php(344): do_action('plugins_loaded')
+#4 /data/wwwroot/www.rollingcrates.com/wp-config.php(89): require_once('/data/wwwroot/w...')
+#5 /data/wwwroot/www.rollingcrates.com/wp-load.php(37): require_once('/data/wwwroot/w...')
+#6 /data/wwwroot/www.rollingcrates.com/wp-admin/admin-ajax.php(22): require_once('/data/wwwroot/w...')
+#7 {main}
+  thrown in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wp-mail-smtp/src/Core.php on line 202
+
+2020-06-17T15:19:55+00:00 CRITICAL Uncaught Error: Class 'WPMailSMTP\AM_Notification' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wp-mail-smtp/src/Core.php:202
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(286): WPMailSMTP\Core->init_notifications('')
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(310): WP_Hook->apply_filters(Object(WPMailSMTP\MailCatcher), Array)
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(453): WP_Hook->do_action(Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-settings.php(344): do_action('plugins_loaded')
+#4 /data/wwwroot/www.rollingcrates.com/wp-config.php(89): require_once('/data/wwwroot/w...')
+#5 /data/wwwroot/www.rollingcrates.com/wp-load.php(37): require_once('/data/wwwroot/w...')
+#6 /data/wwwroot/www.rollingcrates.com/wp-admin/admin.php(31): require_once('/data/wwwroot/w...')
+#7 /data/wwwroot/www.rollingcrates.com/wp-admin/update-core.php(10): require_once('/data/wwwroot/w...')
+#8 {main}
+  thrown in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wp-mail-smtp/src/Core.php on line 202
+
+2020-06-17T15:27:32+00:00 CRITICAL Uncaught Error: Class 'Automattic\Jetpack\Constants' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php:321
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php(227): WC_Session_Handler->get_session('2', Array)
+#1 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php(114): WC_Session_Handler->get_session_data()
+#2 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php(71): WC_Session_Handler->init_session_cookie()
+#3 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woocommerce/includes/class-woocommerce.php(490): WC_Session_Handler->init()
+#4 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): WooCommerce->init('')
+#5 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#6 /data/wwwroot/www.rolling in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woocommerce/includes/class-wc-session-handler.php on line 321
+
+2020-06-17T15:28:07+00:00 CRITICAL Uncaught Error: Class 'WPSEO_Ryte_Service' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php:364
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): wpseo_init_rest_api(Object(WP_REST_Server))
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-includes/rest-api.php(479): do_action('rest_api_init', Object(WP_REST_Server))
+#4 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woo-gutenberg-products-block/src/RestApi.php(50): rest_get_server()
+#5 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woo-gutenberg-products-block/src/Assets.php(171): Automattic\WooCommerce\Blocks\RestApi->get_routes_from_namespace('wc/store')
+#6 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): Automattic\WooCommerce\Blocks\Asset in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php on line 364
+
+2020-06-17T15:28:16+00:00 CRITICAL Uncaught Error: Class 'WPSEO_Ryte_Service' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php:364
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): wpseo_init_rest_api(Object(WP_REST_Server))
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-includes/rest-api.php(479): do_action('rest_api_init', Object(WP_REST_Server))
+#4 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woo-gutenberg-products-block/src/RestApi.php(50): rest_get_server()
+#5 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woo-gutenberg-products-block/src/Assets.php(171): Automattic\WooCommerce\Blocks\RestApi->get_routes_from_namespace('wc/store')
+#6 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): Automattic\WooCommerce\Blocks\Asset in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php on line 364
+
+2020-06-17T15:28:32+00:00 CRITICAL Uncaught Error: Class 'WPSEO_Ryte_Service' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php:364
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): wpseo_init_rest_api(Object(WP_REST_Server))
+#1 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#3 /data/wwwroot/www.rollingcrates.com/wp-includes/rest-api.php(479): do_action('rest_api_init', Object(WP_REST_Server))
+#4 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woo-gutenberg-products-block/src/RestApi.php(50): rest_get_server()
+#5 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/woo-gutenberg-products-block/src/Assets.php(171): Automattic\WooCommerce\Blocks\RestApi->get_routes_from_namespace('wc/store')
+#6 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): Automattic\WooCommerce\Blocks\Asset in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php on line 364
+
+2020-06-17T15:28:42+00:00 CRITICAL Uncaught Error: Class 'WPSEO_MyYoast_Proxy' not found in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/admin/class-admin.php:110
+Stack trace:
+#0 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/admin/class-admin-init.php(31): WPSEO_Admin->__construct()
+#1 /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/wp-seo-main.php(417): WPSEO_Admin_Init->__construct()
+#2 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(287): wpseo_admin_init('')
+#3 /data/wwwroot/www.rollingcrates.com/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters(NULL, Array)
+#4 /data/wwwroot/www.rollingcrates.com/wp-includes/plugin.php(478): WP_Hook->do_action(Array)
+#5 /data/wwwroot/www.rollingcrates.com/wp-settings.php(403): do_action('plugins_loaded')
+#6 /data/wwwroot/www.rollingcrates.com/wp-config.php(89): require_once('/data/wwwroot/w...')
+#7 /data/wwwroot/www.rollingcrates.com/wp-load.php(37): require_once('/data/wwwroot/w...')
+#8 /data/wwwroot/www.rolling in /data/wwwroot/www.rollingcrates.com/wp-content/plugins/wordpress-seo/admin/class-admin.php on line 110
+

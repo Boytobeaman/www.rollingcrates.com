@@ -7,9 +7,12 @@
  * @since Business Consultr 1.0.0
  */
 ?>	
+</div> <!-- end content -->
+
 		<?php if( business_consultr_get_option( 'disable_footer_widget') ){
 			$return =  false;
 		}else {
+			if( business_consultr_is_active_footer_sidebar() ):
 			?>
 				<section class="wrapper block-top-footer">
 					<div class="container">
@@ -33,6 +36,7 @@
 					</div>
 				</section>
 			<?php
+			endif;
 		}
 
 		?>

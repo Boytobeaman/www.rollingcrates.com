@@ -2,74 +2,30 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { addQueryArgs } from '@wordpress/url';
-import apiFetch from '@wordpress/api-fetch';
-import { InspectorControls } from '@wordpress/editor';
 import { Component, Fragment } from '@wordpress/element';
-import { debounce } from 'lodash';
-import {
-	PanelBody,
-	Placeholder,
-	RangeControl,
-	Spinner,
-} from '@wordpress/components';
+import { Disabled, PanelBody } from '@wordpress/components';
+import { InspectorControls } from '@wordpress/block-editor';
+import { ServerSideRender } from '@wordpress/editor';
 import PropTypes from 'prop-types';
-
-/**
- * Internal dependencies
- */
-import getQuery from '../../utils/get-query';
-import { IconNewReleases } from '../../components/icons';
-import ProductCategoryControl from '../../components/product-category-control';
-import ProductPreview from '../../components/product-preview';
+import GridContentControl from '@woocommerce/block-components/grid-content-control';
+import GridLayoutControl from '@woocommerce/block-components/grid-layout-control';
+import ProductCategoryControl from '@woocommerce/block-components/product-category-control';
+import { gridBlockPreview } from '@woocommerce/resource-previews';
 
 /**
  * Component to handle edit mode of "Newest Products".
  */
 class ProductNewestBlock extends Component {
-	constructor() {
-		super( ...arguments );
-		this.state = {
-			products: [],
-			loaded: false,
-		};
-
-		this.debouncedGetProducts = debounce( this.getProducts.bind( this ), 200 );
-	}
-
-	componentDidMount() {
-		if ( this.props.attributes.categories ) {
-			this.getProducts();
-		}
-	}
-
-	componentDidUpdate( prevProps ) {
-		const hasChange = [ 'rows', 'columns', 'categories', 'catOperator' ].reduce( ( acc, key ) => {
-			return acc || prevProps.attributes[ key ] !== this.props.attributes[ key ];
-		}, false );
-		if ( hasChange ) {
-			this.debouncedGetProducts();
-		}
-	}
-
-	getProducts() {
-		apiFetch( {
-			path: addQueryArgs(
-				'/wc-pb/v3/products',
-				getQuery( this.props.attributes, this.props.name )
-			),
-		} )
-			.then( ( products ) => {
-				this.setState( { products, loaded: true } );
-			} )
-			.catch( () => {
-				this.setState( { products: [], loaded: true } );
-			} );
-	}
-
 	getInspectorControls() {
 		const { attributes, setAttributes } = this.props;
-		const { categories, catOperator, columns, rows } = attributes;
+		const {
+			categories,
+			catOperator,
+			columns,
+			contentVisibility,
+			rows,
+			alignButtons,
+		} = attributes;
 
 		return (
 			<InspectorControls key="inspector">
@@ -77,19 +33,22 @@ class ProductNewestBlock extends Component {
 					title={ __( 'Layout', 'woo-gutenberg-products-block' ) }
 					initialOpen
 				>
-					<RangeControl
-						label={ __( 'Columns', 'woo-gutenberg-products-block' ) }
-						value={ columns }
-						onChange={ ( value ) => setAttributes( { columns: value } ) }
-						min={ wc_product_block_data.min_columns }
-						max={ wc_product_block_data.max_columns }
+					<GridLayoutControl
+						columns={ columns }
+						rows={ rows }
+						alignButtons={ alignButtons }
+						setAttributes={ setAttributes }
 					/>
-					<RangeControl
-						label={ __( 'Rows', 'woo-gutenberg-products-block' ) }
-						value={ rows }
-						onChange={ ( value ) => setAttributes( { rows: value } ) }
-						min={ wc_product_block_data.min_rows }
-						max={ wc_product_block_data.max_rows }
+				</PanelBody>
+				<PanelBody
+					title={ __( 'Content', 'woo-gutenberg-products-block' ) }
+					initialOpen
+				>
+					<GridContentControl
+						settings={ contentVisibility }
+						onChange={ ( value ) =>
+							setAttributes( { contentVisibility: value } )
+						}
 					/>
 				</PanelBody>
 				<PanelBody
@@ -116,41 +75,21 @@ class ProductNewestBlock extends Component {
 	}
 
 	render() {
-		const { columns } = this.props.attributes;
-		const { loaded, products } = this.state;
-		const classes = [ 'wc-block-products-grid', 'wc-block-newest-products' ];
-		if ( columns ) {
-			classes.push( `cols-${ columns }` );
-		}
-		if ( products && ! products.length ) {
-			if ( ! loaded ) {
-				classes.push( 'is-loading' );
-			} else {
-				classes.push( 'is-not-found' );
-			}
+		const { attributes, name } = this.props;
+
+		if ( attributes.isPreview ) {
+			return gridBlockPreview;
 		}
 
 		return (
 			<Fragment>
 				{ this.getInspectorControls() }
-				<div className={ classes.join( ' ' ) }>
-					{ products.length ? (
-						products.map( ( product ) => (
-							<ProductPreview product={ product } key={ product.id } />
-						) )
-					) : (
-						<Placeholder
-							icon={ <IconNewReleases /> }
-							label={ __( 'Newest Products', 'woo-gutenberg-products-block' ) }
-						>
-							{ ! loaded ? (
-								<Spinner />
-							) : (
-								__( 'No products found.', 'woo-gutenberg-products-block' )
-							) }
-						</Placeholder>
-					) }
-				</div>
+				<Disabled>
+					<ServerSideRender
+						block={ name }
+						attributes={ attributes }
+					/>
+				</Disabled>
 			</Fragment>
 		);
 	}

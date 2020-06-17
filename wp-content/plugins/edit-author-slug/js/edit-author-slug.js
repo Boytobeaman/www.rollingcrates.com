@@ -3,7 +3,9 @@
 
 	// Toggle the .hidden class.
 	toggleHidden = function( el ) {
-		el.classList.toggle( 'hidden' );
+		if (el && Object.prototype.hasOwnProperty.call(el, 'classList')) {
+			el.classList.toggle( 'hidden' );
+		}
 	};
 
 	// Run our code after the DOM is loaded.
@@ -52,9 +54,11 @@
 		});
 
 		// When the custom author slug input is focused, set the custom radio as selected.
-		customInput && customInput.addEventListener( 'focus', function() {
-			document.querySelector( '.eas-author-slug-custom-radio' ).checked = 'checked';
-		});
+		if ( customInput ) {
+			customInput.addEventListener( 'focus', function() {
+				document.querySelector( '.eas-author-slug-custom-radio' ).checked = 'checked';
+			});
+		}
 
 		// Watch select boxes, and add a warning if username is selected, but
 		// only when iThemes `force unique nicename` is turned on.
