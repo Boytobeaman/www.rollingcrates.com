@@ -160,3 +160,55 @@ if ( version_compare( PHP_VERSION, '5.3', '>=' ) ) {
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
+
+
+/**
+ * 模板兔添加
+ */
+add_action('woocommerce_after_shop_loop_item', 'mbt_woo_acf_metas', 15);
+function mbt_woo_acf_metas(){
+	global $post;
+	$product_cat = get_the_terms($post->ID,'product_cat');
+	if($product_cat){
+		$acf_metas = get_term_meta($product_cat[0]->term_id,'acf_metas',true);
+		if($acf_metas){
+			echo '<div class="woo-acf-metas">';
+			$acf_metas_arr = explode('|', $acf_metas);
+            foreach ($acf_metas_arr as $acf_meta_str) { 
+                $acf_meta_arr = explode(',', $acf_meta_str);
+                $meta = get_post_meta($post->ID,$acf_meta_arr[0],true);
+                if($meta){
+                	echo '<div class="acf-item"><label>'.$acf_meta_arr[1].'</label>'.$meta.'</div>';
+                }
+            }
+            echo '</div>';
+		}
+	}
+}
+
+add_action('product_cat_add_form_fields','mbt_product_cat_add_category_field',10,2); 
+function mbt_product_cat_add_category_field(){
+	echo '<div class="form-field">  
+            <label for="acf_metas">ACF metas</label>  
+            <input name="acf_metas" id="acf_metas" type="text" value="">  
+            <p>名称,别名，多个用|隔开。例如：productmodel,Model|productlength,Length</p>  
+          </div>';
+}
+
+add_action('product_cat_edit_form_fields','mbt_product_cat_edit_category_field',10,2);
+function mbt_product_cat_edit_category_field($tag){ 
+	echo '<tr class="form-field">  
+            <th scope="row"><label for="acf_metas">ACF metas</label></th>  
+            <td>  
+                <input name="acf_metas" id="acf_metas" type="text" value="';  
+                echo get_term_meta($tag->term_id,'acf_metas',true).'" /><br>  
+                <span class="cat-color">名称,别名，多个用|隔开。例如：productmodel,Model|productlength,Length</span>  
+            </td>  
+        </tr>'; 
+}
+
+add_action('created_product_cat','mbt_product_cat_metadate_edited',10,1);  
+add_action('edited_product_cat','mbt_product_cat_metadate_edited',10,1);
+function mbt_product_cat_metadate_edited($term_id){  
+	update_term_meta($term_id,'acf_metas',$_POST['acf_metas']);
+}
