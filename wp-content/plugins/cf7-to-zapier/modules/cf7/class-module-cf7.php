@@ -259,7 +259,7 @@ if ( ! class_exists( 'CFTZ_Module_CF7' ) ) {
 
             // Submission
             $submission = WPCF7_Submission::get_instance();
-            $files = ( ! empty( $submission ) ) ? $submission->uploaded_files() : [];
+            $uploaded_files = ( ! empty( $submission ) ) ? $submission->uploaded_files() : [];
 
             // Upload Info
             $wp_upload_dir = wp_get_upload_dir();
@@ -285,19 +285,31 @@ if ( ! class_exists( 'CFTZ_Module_CF7' ) ) {
                 }
 
                 // Files
-                if ( $tag->basetype === 'file' && ! empty( $files[ $tag->name ] ) ) {
-                    $file = $files[ $tag->name ];
+                if ( $tag->basetype === 'file' && ! empty( $uploaded_files[ $tag->name ] ) ) {
+                    $files = $uploaded_files[ $tag->name ];
 
-                    wp_mkdir_p( $upload_dir );
-                    if ( ! copy( $file, $upload_dir . '/' . basename( $file ) ) ) {
-                        $submission = WPCF7_Submission::get_instance();
-                        $submission->set_status( 'mail_failed' );
-                        $submission->set_response( $contact_form->message( 'upload_failed' ) );
+                    $copied_files = [];
+                    foreach ( (array) $files as $file ) {
+                        wp_mkdir_p( $upload_dir );
 
-                        continue;
+                        $filename = wp_unique_filename( $upload_dir, basename( $file ) );
+
+                        if ( ! copy( $file, $upload_dir . '/' . $filename ) ) {
+                            $submission = WPCF7_Submission::get_instance();
+                            $submission->set_status( 'mail_failed' );
+                            $submission->set_response( $contact_form->message( 'upload_failed' ) );
+
+                            continue;
+                        }
+
+                        $copied_files[] = $upload_url . '/' . $filename;
                     }
 
-                    $value = $upload_url . '/' . basename( $file );
+                    $value = $copied_files;
+
+                    if (count($value) === 1) {
+                        $value = $value[0];
+                    }
                 }
 
                 // Support to Pipes
@@ -316,11 +328,32 @@ if ( ! class_exists( 'CFTZ_Module_CF7' ) ) {
                     }
                 }
 
-                // Support to option
-                $key = $tag->name;
-                $webhook_key = $tag->get_option('webhook');
+                // Support to Free Text on checkbox and radio
+                if ( $tag->has_option( 'free_text' ) && in_array( $tag->basetype, [ 'checkbox', 'radio' ] ) ) {
+                    $free_text_label = end( $tag->values );
+                    $free_text_name  = $tag->name . '_free_text';
+                    $free_text_value = ( ! empty( $_POST[ $free_text_name ] ) ) ? $_POST[ $free_text_name ] : '';
 
-                if (! empty($webhook_key) && ! empty($webhook_key[0])) {
+                    if ( is_array( $value ) ) {
+                        foreach ( $value as $key => $v ) {
+                            if ( $v !== $free_text_label ) {
+                                continue;
+                            }
+
+                            $value[ $key ] = stripslashes( $free_text_value );
+                        }
+                    }
+
+                    if ( is_string( $value ) && $value === $free_text_label ) {
+                        $value = stripslashes( $free_text_value );
+                    }
+                }
+
+                // Support to "webhook" option (rename field value)
+                $key = $tag->name;
+                $webhook_key = $tag->get_option( 'webhook' );
+
+                if ( ! empty( $webhook_key ) && ! empty( $webhook_key[0] ) ) {
                     $key = $webhook_key[0];
                 }
 
@@ -354,7 +387,9 @@ if ( ! class_exists( 'CFTZ_Module_CF7' ) ) {
             }
 
             foreach ( $tags as $key => $tag ) {
-                $value = apply_filters( 'wpcf7_special_mail_tags', '', $tag, false );
+                $mail_tag = new WPCF7_MailTag( sprintf( '[%s]', $tag ), $tag, '' );
+                $value = apply_filters( 'wpcf7_special_mail_tags', '', $tag, false, $mail_tag );
+
                 $data[ $key ] = $value;
             }
 
